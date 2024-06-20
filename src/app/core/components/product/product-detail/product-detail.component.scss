@@ -1,3 +1,5 @@
+@import "/src/app/core/variables.scss";
+
 .product-details-container {
   display: flex;
   flex-direction: column;
@@ -25,10 +27,14 @@
     align-items: center;
     justify-content: center;
     margin-left: 20px;
+
+    button {
+      background-color: $bg-secondary !important;
+    }
   }
 }
 
 .carousel-image {
-  max-width: 550px;
-  height: auto;
+  max-width: 500px;
+  height: 400px;
 }
