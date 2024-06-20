@@ -7,7 +7,7 @@
 
   <div class="detail-content">
     <img
-      [src]="'assets/img/coxinha.jpg'"
+      [src]="product.images[0]"
       alt="Imagem do Produto"
       class="carousel-image"
     />
@@ -15,7 +15,7 @@
     <div class="add-cart">
       <p>{{ product.price | currencyBrl }}</p>
 
-      <button mat-raised-button color="primary" (click)="addToCart()">
+      <button mat-flat-button color="primary" (click)="addToCart()">
         Comprar
       </button>
     </div>

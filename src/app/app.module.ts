@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductDetailComponent } from './core/components/product/product-detail/product-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material
@@ -11,19 +10,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
-import { CurrencyBrlPipe } from './shared/pipes/currency-brl.pipe';
-
 import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './shared/header/header.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { CoreModule } from './core/core.module';
-import { ProductListComponent } from './core/components/product/product-list/product-list.component';
+import { CommonModule, NgFor } from '@angular/common';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductDetailComponent, CurrencyBrlPipe
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,7 +29,8 @@ import { ProductListComponent } from './core/components/product/product-list/pro
     HeaderComponent,
     NavbarComponent,
     CoreModule,
-    ProductListComponent
+    NgFor,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
