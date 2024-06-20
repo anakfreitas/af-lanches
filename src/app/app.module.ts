@@ -11,17 +11,31 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
-import { CurrencyBrlPipe } from './currency-brl.pipe';
+import { CurrencyBrlPipe } from './shared/pipes/currency-brl.pipe';
+
+import { SharedModule } from './shared/shared.module';
+import { HeaderComponent } from './shared/header/header.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { CoreModule } from './core/core.module';
+import { ProductListComponent } from './core/components/product/product-list/product-list.component';
 
 @NgModule({
-  declarations: [AppComponent, ProductDetailComponent, CurrencyBrlPipe],
+  declarations: [
+    AppComponent,
+    ProductDetailComponent, CurrencyBrlPipe
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    SharedModule,
+    HeaderComponent,
+    NavbarComponent,
+    CoreModule,
+    ProductListComponent
   ],
   providers: [],
   bootstrap: [AppComponent],
