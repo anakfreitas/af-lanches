@@ -1,0 +1,31 @@
+@import "/src/app/core/variables.scss";
+
+mat-grid-tile {
+    background: transparent;
+    color: $font-accent ;
+  }
+
+  .app-header{
+    background-color: $bg-primary;
+  }
+
+  .search{
+   width: 100%;
+   margin-top: 20px;
+  }
+
+  mat-icon{
+    color: white;
+  }
+  
+  input{
+    border-color: white !important;
+  }
+  .search mat-label{
+    color: $font-accent;
+  }
+
+  ::ng-deep .mdc-text-field--outlined{
+    color: white;
+    border: 1px solid white !important;
+  }
