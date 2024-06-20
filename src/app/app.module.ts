@@ -11,8 +11,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 import { SharedModule } from './shared/shared.module';
-import { HeaderComponent } from './shared/header/header.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { CoreModule } from './core/core.module';
 import { CommonModule, NgFor } from '@angular/common';
 
