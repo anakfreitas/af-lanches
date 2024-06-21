@@ -14,7 +14,8 @@
       <mat-card-content>
         <h3>{{ item.title }}</h3>
         <p>{{ item.price | currencyBrl }}</p>
-        <button mat-flat-button color="primary">Comprar</button>
+        <button mat-flat-button color="primary">
+          <mat-icon>add_cart</mat-icon>Comprar</button>
       </mat-card-content>
     </mat-card>
   </div>
@@ -38,7 +39,10 @@
       </mat-card-header>
 
       <mat-card-content style="margin-top: 10px">
-        <button mat-flat-button color="primary">Comprar</button>
+       
+        <button mat-flat-button color="primary">
+          <mat-icon>add_cart</mat-icon>
+          Comprar</button>
       </mat-card-content>
     </mat-card>
   </div>
@@ -55,6 +59,7 @@
         <div matListItemTitle>{{ item.title }}</div>
         <div matListItemLine>{{ item.price | currencyBrl }}</div>
         <button mat-flat-button color="primary" class="button-list">
+          <mat-icon>add_cart</mat-icon>
           Comprar
         </button>
       </mat-list-item>
