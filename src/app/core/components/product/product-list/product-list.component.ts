@@ -15,6 +15,7 @@ export class ProductListComponent {
       price: 9,
       images: [
         'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
+        '../../../../../assets/img/coxinha.jpg'
       ],
     },
     {
@@ -22,6 +23,7 @@ export class ProductListComponent {
       price: 9,
       images: [
         'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
+        '../../../../../assets/img/coxinha.jpg'
       ],
     },
     {
@@ -29,6 +31,7 @@ export class ProductListComponent {
       price: 9,
       images: [
         'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
+        '../../../../../assets/img/coxinha.jpg'
       ],
     },
     {
@@ -36,6 +39,7 @@ export class ProductListComponent {
       price: 9,
       images: [
         'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
+        '../../../../../assets/img/coxinha.jpg'
       ],
     },
     {
@@ -43,6 +47,7 @@ export class ProductListComponent {
       price: 9,
       images: [
         'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
+        '../../../../../assets/img/coxinha.jpg'
       ],
     },
   ];
@@ -51,7 +56,7 @@ export class ProductListComponent {
 
   openProductDetails(product: Product) {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '800px';
+    dialogConfig.width = '850px';
     dialogConfig.maxWidth = '90vw';
     dialogConfig.autoFocus = true;
     dialogConfig.data = product;
