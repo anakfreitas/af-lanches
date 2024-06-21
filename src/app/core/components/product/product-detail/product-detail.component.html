@@ -6,18 +6,20 @@
   <h2 class="title">{{ product.title }}</h2>
 
   <div class="detail-content">
-    <img
-      [src]="product.images[0]"
-      alt="Imagem do Produto"
-      class="carousel-image"
-    />
+    <lib-ngx-image-zoom
+      [thumbImage]="product.images[0]"
+      [fullImage]="product.images[0]"
+      [magnification]="1"
+      [enableScrollZoom]="true"
+      [enableLens]="true"
+      [lensWidth]="200"
+      [lensHeight]="200"
+    ></lib-ngx-image-zoom>
 
     <div class="add-cart">
       <p>{{ product.price | currencyBrl }}</p>
 
-      <button mat-flat-button color="primary" (click)="addToCart()">
-        Comprar
-      </button>
+      <app-add-cart [product]="product" />
     </div>
   </div>
 </div>

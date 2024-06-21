@@ -51,7 +51,7 @@ export class ProductListComponent {
 
   openProductDetails(product: Product) {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '700px';
+    dialogConfig.width = '800px';
     dialogConfig.maxWidth = '90vw';
     dialogConfig.autoFocus = true;
     dialogConfig.data = product;

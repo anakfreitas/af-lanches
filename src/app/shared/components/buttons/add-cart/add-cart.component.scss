@@ -1,0 +1,30 @@
+@import "/src/app/core/variables.scss";
+
+.add-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+  margin-top: 10px;
+
+  .quantity {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+
+    .quantity-number {
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+    }
+  }
+
+  button {
+    background-color: $bg-secondary !important;
+    font-size: 14px;
+    border-radius: 50px;
+  }
+}

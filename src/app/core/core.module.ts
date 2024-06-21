@@ -7,10 +7,20 @@ import { ProductListComponent } from './components/product/product-list/product-
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from '../shared/shared.module';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @NgModule({
   declarations: [ProductDetailComponent, ProductListComponent, CurrencyBrlPipe],
-  imports: [CommonModule, MatIconModule, MatCardModule, MatListModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatCardModule,
+    MatListModule,
+    MatButtonModule,
+    SharedModule,
+    NgxImageZoomModule
+  ],
   exports: [ProductDetailComponent, ProductListComponent],
 })
 export class CoreModule {}
