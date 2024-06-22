@@ -6,20 +6,54 @@
   <h2 class="title">{{ product.title }}</h2>
 
   <div class="detail-content">
-    <lib-ngx-image-zoom
-      [thumbImage]="product.images[0]"
-      [fullImage]="product.images[0]"
-      [magnification]="1"
-      [enableScrollZoom]="true"
-      [enableLens]="true"
-      [lensWidth]="200"
-      [lensHeight]="200"
-    ></lib-ngx-image-zoom>
+    <div class="slide-images">
+      <button
+        mat-icon-button
+        (click)="prevImage()"
+        class="prevBtn"
+        *ngIf="!isMobile"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <lib-ngx-image-zoom
+        [thumbImage]="product.images[currentIndex]"
+        [fullImage]="product.images[currentIndex]"
+        [magnification]="1"
+        [enableScrollZoom]="true"
+        [enableLens]="true"
+        [lensWidth]="200"
+        [lensHeight]="200"
+      ></lib-ngx-image-zoom>
+      <div class="buttons-mobile" *ngIf="isMobile">
+        <button mat-icon-button (click)="prevImage()" class="prevBtn">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button mat-icon-button (click)="nextImage()" class="nextBtn">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+      <button
+        mat-icon-button
+        (click)="nextImage()"
+        class="nextBtn"
+        *ngIf="!isMobile"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
 
     <div class="add-cart">
       <p>{{ product.price | currencyBrl }}</p>
 
       <app-add-cart [product]="product" />
     </div>
+  </div>
+
+  <div class="reviews">
+    <p>Avaliações</p>
+    <app-reviews
+      *ngFor="let review of reviews"
+      [review]="review">
+    </app-reviews>
   </div>
 </div>

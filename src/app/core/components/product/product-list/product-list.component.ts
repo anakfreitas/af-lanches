@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from '../../../models/product.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { DeviceService } from '../../../../shared/services/device.service';
 
 @Component({
   selector: 'app-product-list',
@@ -10,12 +11,14 @@ import { ProductDetailComponent } from '../product-detail/product-detail.compone
   
 })
 export class ProductListComponent {
+  public isMobile: boolean = false;
   public list: Product[] = [
     {
       title: 'Pastel de Carne',
       price: 9,
       images: [
         'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
+        '../../../../../assets/img/coxinha.jpg'
       ],
     },
     {
@@ -23,6 +26,7 @@ export class ProductListComponent {
       price: 9,
       images: [
         'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
+        '../../../../../assets/img/coxinha.jpg'
       ],
     },
     {
@@ -30,6 +34,7 @@ export class ProductListComponent {
       price: 9,
       images: [
         'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
+        '../../../../../assets/img/coxinha.jpg'
       ],
     },
     {
@@ -37,6 +42,7 @@ export class ProductListComponent {
       price: 9,
       images: [
         'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
+        '../../../../../assets/img/coxinha.jpg'
       ],
     },
     {
@@ -44,16 +50,21 @@ export class ProductListComponent {
       price: 9,
       images: [
         'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
+        '../../../../../assets/img/coxinha.jpg'
       ],
     },
   ];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private deviceService: DeviceService,) {
+    this.isMobile =
+      this.deviceService.isMobile() || this.deviceService.screenMobile();
+  }
 
   openProductDetails(product: Product) {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '800px';
+    dialogConfig.width = '850px';
     dialogConfig.maxWidth = '90vw';
+    dialogConfig.maxHeight = this.isMobile ? '90vh' : '100%';
     dialogConfig.autoFocus = true;
     dialogConfig.data = product;
     dialogConfig.panelClass = 'custom-dialog-container';
