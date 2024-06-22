@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../core/models/product.model';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { Cart } from '../../core/models/cart.model';
 import { ProductService } from './product.service';
+
+const cartKey = 'cart_state';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   private _cart: BehaviorSubject<Cart> = new BehaviorSubject({});
+
   public cart = this._cart.asObservable();
   public currentQuantity = this.cart.pipe(
     map((cart) => Object.keys(cart).reduce((p, c) => p + cart[c], 0))
@@ -27,7 +30,14 @@ export class CartService {
     })
   );
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) {
+    this._cart.next(JSON.parse(localStorage.getItem(cartKey) ?? '{}'));
+  }
+
+  private setCart(currentCart: Cart) {
+    localStorage.setItem(cartKey, JSON.stringify(currentCart));
+    this._cart.next(currentCart);
+  }
 
   addToCart(product: Product, quantity: number) {
     const currentCart = this._cart.value;
@@ -36,6 +46,6 @@ export class CartService {
     } else {
       currentCart[product.id] += quantity;
     }
-    this._cart.next(currentCart);
+    this.setCart(currentCart);
   }
 }
