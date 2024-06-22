@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CartService } from '../../services/cart.service';
 import { SharedModule } from '../../shared.module';
+import { CheckoutButtonComponent } from '../buttons/checkout-button/checkout-button.component';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ import { SharedModule } from '../../shared.module';
     MatFormFieldModule,
     MatInputModule,
     SharedModule,
+    CheckoutButtonComponent,
   ],
 })
 export class HeaderComponent {

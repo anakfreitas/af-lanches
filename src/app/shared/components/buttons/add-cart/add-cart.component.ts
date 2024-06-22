@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ToBuyProduct } from '../../../../core/models/product.model';
 import { SnackbarService } from '../../../services/snackbar.service';
+import { CurrencyBrlPipe } from '../../../pipes/currency-brl.pipe';
 @Component({
   selector: 'app-add-cart',
   templateUrl: './add-cart.component.html',
@@ -24,10 +25,18 @@ export class AddCartComponent {
   addToCart() {
     const s = this.quantity > 1 ? 's' : '';
     this.product.buyAction(this.quantity);
-    this.snackbarService.open('Produto' + s + ' adicionado' + s + '!', {
-      icon: 'check',
-      type: 'success',
-    });
+    this.snackbarService.open(
+      'Produto' +
+        s +
+        ' adicionado' +
+        s +
+        ' por ' +
+        new CurrencyBrlPipe().transform(this.quantity * this.product.price),
+      {
+        icon: 'check',
+        type: 'success',
+      }
+    );
   }
 
   increment() {

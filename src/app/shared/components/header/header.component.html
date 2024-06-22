@@ -10,10 +10,11 @@
         </mat-form-field>
       </p>
     </mat-grid-tile>
-    <mat-grid-tile>redes socias</mat-grid-tile>
-    <mat-grid-tile>
-      <div>Quantidade: {{ cartQuantity }}</div>
-      <div>Valor: {{ cartValue | currencyBrl }}</div>
-    </mat-grid-tile>
+    <mat-grid-tile
+      ><app-checkout-button
+        [quantity]="cartQuantity"
+        [value]="cartValue"
+      ></app-checkout-button
+    ></mat-grid-tile>
   </mat-grid-list>
 </section>
