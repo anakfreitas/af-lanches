@@ -15,6 +15,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { CoreModule } from './core/core.module';
 import { CommonModule, NgFor } from '@angular/common';
+import { HomeLayoutComponent } from './core/layouts/home-layout/home-layout.component';
 
 @NgModule({
   declarations: [AppComponent],
