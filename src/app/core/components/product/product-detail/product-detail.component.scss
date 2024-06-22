@@ -22,6 +22,10 @@
   margin-bottom: 20px;
 }
 
+::ng-deep .detail-content .slide-images .ngxImageZoomContainer {
+  cursor: crosshair;
+}
+
 .detail-content {
   display: flex;
   justify-content: center;

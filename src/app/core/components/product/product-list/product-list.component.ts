@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { Product } from '../../../models/product.model';
+import { Product, ToBuyProduct } from '../../../models/product.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { DeviceService } from '../../../../shared/services/device.service';
+import { CartService } from '../../../../shared/services/cart.service';
+import { ProductService } from '../../../../shared/services/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,53 +13,15 @@ import { DeviceService } from '../../../../shared/services/device.service';
   
 })
 export class ProductListComponent {
-  public isMobile: boolean = false;
-  public list: Product[] = [
-    {
-      title: 'Pastel de Carne',
-      price: 9,
-      images: [
-        'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
-        '../../../../../assets/img/coxinha.jpg'
-      ],
-    },
-    {
-      title: 'Pastel de Queijo',
-      price: 9,
-      images: [
-        'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
-        '../../../../../assets/img/coxinha.jpg'
-      ],
-    },
-    {
-      title: 'Pastel de Frango',
-      price: 9,
-      images: [
-        'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
-        '../../../../../assets/img/coxinha.jpg'
-      ],
-    },
-    {
-      title: 'Pastel de Misto',
-      price: 9,
-      images: [
-        'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
-        '../../../../../assets/img/coxinha.jpg'
-      ],
-    },
-    {
-      title: 'Pastel de Pizza',
-      price: 9,
-      images: [
-        'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
-        '../../../../../assets/img/coxinha.jpg'
-      ],
-    },
-  ];
+  public list: Product[] = [];
+  isMobile: any;
 
-  constructor(private dialog: MatDialog, private deviceService: DeviceService,) {
-    this.isMobile =
-      this.deviceService.isMobile() || this.deviceService.screenMobile();
+  constructor(
+    private dialog: MatDialog,
+    private cartService: CartService,
+    private productService: ProductService
+  ) {
+    this.list = this.productService.allProducts;
   }
 
   openProductDetails(product: Product) {
@@ -66,7 +30,13 @@ export class ProductListComponent {
     dialogConfig.maxWidth = '90vw';
     dialogConfig.maxHeight = this.isMobile ? '90vh' : '100%';
     dialogConfig.autoFocus = true;
-    dialogConfig.data = product;
+    dialogConfig.data = {
+      ...product,
+      buyAction: (quantity) => {
+        this.cartService.addToCart(product, quantity);
+        this.dialog.closeAll();
+      },
+    } as ToBuyProduct;
     dialogConfig.panelClass = 'custom-dialog-container';
     this.dialog.open(ProductDetailComponent, dialogConfig);
   }

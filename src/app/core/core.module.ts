@@ -16,7 +16,7 @@ import { HeaderComponent } from '../shared/components/header/header.component';
 import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
-  declarations: [ProductDetailComponent, ProductListComponent, CurrencyBrlPipe, ReviewsComponent, HomeLayoutComponent],
+  declarations: [ProductDetailComponent, ProductListComponent, ReviewsComponent, HomeLayoutComponent],
   imports: [
     CommonModule,
     MatIconModule,

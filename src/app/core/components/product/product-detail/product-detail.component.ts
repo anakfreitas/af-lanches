@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
-import { Product } from '../../../models/product.model';
+import { ToBuyProduct } from '../../../models/product.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DeviceService } from '../../../../shared/services/device.service';
 import { Review } from '../../../models/reviews.model';
@@ -11,11 +11,9 @@ import { ReviewService } from '../../../../shared/services/review.service';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
-  product: Product = {
-    title: '',
-    price: 0,
-    images: [],
-  };
+  private mobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  product: ToBuyProduct;
 
   public currentIndex = 0;
 

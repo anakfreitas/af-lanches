@@ -1,27 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { AddCartComponent } from './components/buttons/add-cart/add-cart.component';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-
-
+import { CurrencyBrlPipe } from './pipes/currency-brl.pipe';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [
-    AddCartComponent
-  ],
+  declarations: [AddCartComponent, CurrencyBrlPipe],
   imports: [
     CommonModule,
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule,
   ],
-  exports: [
-    AddCartComponent
-  ]
+  exports: [AddCartComponent, CurrencyBrlPipe, CommonModule],
 })
-export class SharedModule { }
+export class SharedModule {}

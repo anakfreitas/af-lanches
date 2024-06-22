@@ -1,6 +1,8 @@
 @import "/src/app/core/variables.scss";
-.grid {
-  width: 200px;
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
 }
 
 .card {
