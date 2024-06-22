@@ -10,9 +10,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from '../shared/shared.module';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { ReviewsComponent } from './components/product/reviews/reviews.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
+import { HeaderComponent } from '../shared/components/header/header.component';
+import { NavbarComponent } from '../shared/components/navbar/navbar.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
-  declarations: [ProductDetailComponent, ProductListComponent, CurrencyBrlPipe, ReviewsComponent],
+  declarations: [ProductDetailComponent, ProductListComponent, CurrencyBrlPipe, ReviewsComponent, HomeLayoutComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -20,7 +24,10 @@ import { ReviewsComponent } from './components/product/reviews/reviews.component
     MatListModule,
     MatButtonModule,
     SharedModule,
-    NgxImageZoomModule
+    NgxImageZoomModule,
+    HeaderComponent,
+    NavbarComponent,
+    AppRoutingModule
   ],
   exports: [ProductDetailComponent, ProductListComponent],
 })

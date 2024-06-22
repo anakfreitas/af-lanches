@@ -15,9 +15,10 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { CoreModule } from './core/core.module';
 import { CommonModule, NgFor } from '@angular/common';
+import { HomeLayoutComponent } from './core/layouts/home-layout/home-layout.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,13 +27,11 @@ import { CommonModule, NgFor } from '@angular/common';
     MatDialogModule,
     MatIconModule,
     SharedModule,
-    HeaderComponent,
-    NavbarComponent,
     CoreModule,
     NgFor,
     CommonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [HomeLayoutComponent],
 })
 export class AppModule {}
