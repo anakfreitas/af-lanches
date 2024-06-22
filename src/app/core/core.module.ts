@@ -11,7 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @NgModule({
-  declarations: [ProductDetailComponent, ProductListComponent, CurrencyBrlPipe],
+  declarations: [ProductDetailComponent, ProductListComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -19,7 +19,7 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
     MatListModule,
     MatButtonModule,
     SharedModule,
-    NgxImageZoomModule
+    NgxImageZoomModule,
   ],
   exports: [ProductDetailComponent, ProductListComponent],
 })

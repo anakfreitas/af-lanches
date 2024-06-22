@@ -1,8 +1,7 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
-import { Product } from '../../../models/product.model';
+import { ToBuyProduct } from '../../../models/product.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DeviceService } from '../../../../shared/services/device.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,11 +11,7 @@ import { Subscription } from 'rxjs';
 export class ProductDetailComponent implements OnInit {
   private mobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  product: Product = {
-    title: '',
-    price: 0,
-    images: [],
-  };
+  product: ToBuyProduct;
 
   public currentIndex = 0;
 

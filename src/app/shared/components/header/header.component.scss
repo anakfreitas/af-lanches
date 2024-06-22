@@ -1,31 +1,31 @@
 @import "/src/app/core/variables.scss";
 
 mat-grid-tile {
-    background: transparent;
-    color: $font-accent ;
-  }
+  background: transparent;
+  color: $font-accent;
+}
 
-  .app-header{
-    background-color: $bg-primary;
-  }
+.app-header {
+  background-color: $bg-primary;
+}
 
-  .search{
-   width: 100%;
-   margin-top: 20px;
-  }
+.search {
+  width: 100%;
+  margin-top: 20px;
+}
 
-  mat-icon{
-    color: white;
-  }
-  
-  input{
-    border-color: white !important;
-  }
-  .search mat-label{
-    color: $font-accent;
-  }
+mat-icon {
+  color: $font-neutral-light;
+}
 
-  ::ng-deep .mdc-text-field--outlined{
-    color: white;
-    border: 1px solid white !important;
-  }
+input {
+  border-color: $font-neutral-light !important;
+}
+.search mat-label {
+  color: $font-accent;
+}
+
+::ng-deep .mdc-text-field--outlined {
+  color: $font-neutral-light;
+  border: 1px solid $font-neutral-light !important;
+}

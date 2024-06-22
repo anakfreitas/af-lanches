@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { Product } from '../../../models/product.model';
+import { Product, ToBuyProduct } from '../../../models/product.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { CartService } from '../../../../shared/services/cart.service';
+import { ProductService } from '../../../../shared/services/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -9,57 +11,28 @@ import { ProductDetailComponent } from '../product-detail/product-detail.compone
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent {
-  public list: Product[] = [
-    {
-      title: 'Pastel de Carne',
-      price: 9,
-      images: [
-        'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
-        '../../../../../assets/img/coxinha.jpg'
-      ],
-    },
-    {
-      title: 'Pastel de Queijo',
-      price: 9,
-      images: [
-        'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
-        '../../../../../assets/img/coxinha.jpg'
-      ],
-    },
-    {
-      title: 'Pastel de Frango',
-      price: 9,
-      images: [
-        'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
-        '../../../../../assets/img/coxinha.jpg'
-      ],
-    },
-    {
-      title: 'Pastel de Misto',
-      price: 9,
-      images: [
-        'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
-        '../../../../../assets/img/coxinha.jpg'
-      ],
-    },
-    {
-      title: 'Pastel de Pizza',
-      price: 9,
-      images: [
-        'https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg',
-        '../../../../../assets/img/coxinha.jpg'
-      ],
-    },
-  ];
+  public list: Product[] = [];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private cartService: CartService,
+    private productService: ProductService
+  ) {
+    this.list = this.productService.allProducts;
+  }
 
   openProductDetails(product: Product) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '850px';
     dialogConfig.maxWidth = '90vw';
     dialogConfig.autoFocus = true;
-    dialogConfig.data = product;
+    dialogConfig.data = {
+      ...product,
+      buyAction: (quantity) => {
+        this.cartService.addToCart(product, quantity);
+        this.dialog.closeAll();
+      },
+    } as ToBuyProduct;
     dialogConfig.panelClass = 'custom-dialog-container';
     this.dialog.open(ProductDetailComponent, dialogConfig);
   }
