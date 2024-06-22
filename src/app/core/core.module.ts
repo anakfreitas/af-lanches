@@ -14,9 +14,19 @@ import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component
 import { NavbarComponent } from '../shared/components/navbar/navbar.component';
 import { HeaderComponent } from '../shared/components/header/header.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { ProductCardComponent } from './components/product/product-card/product-card.component';
+import { ProductGridComponent } from './components/product/product-grid/product-grid.component';
+import { GroupButtonsComponent } from '../shared/components/buttons/group-buttons/group-buttons.component';
 
 @NgModule({
-  declarations: [ProductDetailComponent, ProductListComponent, ReviewsComponent, HomeLayoutComponent],
+  declarations: [
+    ProductDetailComponent,
+    ProductListComponent,
+    ProductCardComponent,
+    ProductGridComponent,
+    ReviewsComponent,
+    HomeLayoutComponent
+  ],
   imports: [
     CommonModule,
     MatIconModule,
@@ -27,8 +37,15 @@ import { AppRoutingModule } from '../app-routing.module';
     NgxImageZoomModule,
     NavbarComponent,
     HeaderComponent,
-    AppRoutingModule
+    AppRoutingModule,
+    GroupButtonsComponent
   ],
-  exports: [ProductDetailComponent, ProductListComponent, HomeLayoutComponent],
+  exports: [
+    ProductDetailComponent,
+    ProductListComponent,
+    ProductCardComponent,
+    ProductGridComponent,
+    HomeLayoutComponent
+  ],
 })
 export class CoreModule {}

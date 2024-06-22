@@ -1,0 +1,23 @@
+@import "/src/app/core/variables.scss";
+
+.button-row {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    gap: 5px;
+  }
+
+.icon{
+    text-align: center;
+    background-color: $bg-primary;
+    font-size: 15px;
+    width: 20px;
+    height: 15px;
+    padding: 2px;
+    border-radius: 5px;
+    color: $neutral-light;
+   &:hover{
+    background-color: $bg-secondary;
+    cursor: pointer;
+   } 
+}  

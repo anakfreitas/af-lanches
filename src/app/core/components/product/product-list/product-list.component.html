@@ -1,52 +1,5 @@
 <section class="product-list">
   <h2>Pastéis</h2>
-  <div class="grid-list">
-    <mat-card
-      class="grid-item"
-      *ngFor="let item of list"
-      (click)="openProductDetails(item)"
-    >
-      <img
-        mat-card-image
-        src="https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg"
-        alt="Photo of a Shiba Inu"
-      />
-      <mat-card-content>
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.price | currencyBrl }}</p>
-        <button mat-flat-button color="primary">
-          <mat-icon>add_cart</mat-icon>Comprar</button>
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-  <div class="list" style="margin-top: 20px">
-    <mat-card class="card" *ngFor="let item of list">
-      <mat-card-header>
-        <mat-card-title-group>
-          <mat-card-title>
-            <h3>{{ item.title }}</h3>
-          </mat-card-title>
-          <mat-card-subtitle>
-            <p>{{ item.price | currencyBrl }}</p>
-          </mat-card-subtitle>
-          <img
-            mat-card-sm-image
-            src="https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg"
-            alt="Photo of a Shiba In"
-          />
-        </mat-card-title-group>
-      </mat-card-header>
-
-      <mat-card-content style="margin-top: 10px">
-       
-        <button mat-flat-button color="primary">
-          <mat-icon>add_cart</mat-icon>
-          Comprar</button>
-      </mat-card-content>
-    </mat-card>
-  </div>
-
   <div>
     <mat-list>
       <mat-list-item *ngFor="let item of list">

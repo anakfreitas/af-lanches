@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { CurrencyBrlPipe } from './pipes/currency-brl.pipe';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { GroupButtonsComponent } from './components/buttons/group-buttons/group-buttons.component';
 
 @NgModule({
   declarations: [AddCartComponent, CurrencyBrlPipe],

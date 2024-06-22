@@ -1,0 +1,25 @@
+<section class="product-list">
+  <app-group-buttons></app-group-buttons>
+    <h2>Pastéis</h2>
+    <div class="grid-list">
+      <mat-card
+        class="grid-item"
+        *ngFor="let item of list"
+        (click)="openProductDetails(item)"
+      >
+        <img
+          mat-card-image
+          src="https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg"
+          alt="Photo of a Shiba Inu"
+        />
+        <mat-card-content>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.price | currencyBrl }}</p>
+          <button mat-flat-button color="primary">
+            <mat-icon>add_cart</mat-icon>Comprar</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+ </section>
+  
