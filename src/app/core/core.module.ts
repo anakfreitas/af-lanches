@@ -9,9 +9,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from '../shared/shared.module';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { ReviewsComponent } from './components/product/reviews/reviews.component';
 
 @NgModule({
-  declarations: [ProductDetailComponent, ProductListComponent, CurrencyBrlPipe],
+  declarations: [ProductDetailComponent, ProductListComponent, CurrencyBrlPipe, ReviewsComponent],
   imports: [
     CommonModule,
     MatIconModule,

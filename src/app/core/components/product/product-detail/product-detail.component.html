@@ -48,4 +48,12 @@
       <app-add-cart [product]="product" />
     </div>
   </div>
+
+  <div class="reviews">
+    <p>Avaliações</p>
+    <app-reviews
+      *ngFor="let review of reviews"
+      [review]="review">
+    </app-reviews>
+  </div>
 </div>
