@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../../core/models/product.model';
+import { Product } from '../models/product.model';
 import { BehaviorSubject, map } from 'rxjs';
-import { Cart } from '../../core/models/cart.model';
+import { Cart } from '../models/cart.model';
 import { ProductService } from './product.service';
 
 const cartKey = 'cart_state';

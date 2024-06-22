@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { Product, ToBuyProduct } from '../../../models/product.model';
+import { Product, ToBuyProduct } from '../../models/product.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
-import { CartService } from '../../../../shared/services/cart.service';
-import { ProductService } from '../../../../shared/services/product.service';
+import { CartService } from '../../services/cart.service';
+import { ProductService } from '../../services/product.service';
+import { ProductDetailModalComponent } from '../../components/product-detail-modal/product-detail-modal.component';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss'],
+  selector: 'app-buy-page',
+  templateUrl: './buy-page.component.html',
+  styleUrls: ['./buy-page.component.scss'],
 })
-export class ProductListComponent {
+export class BuyPageComponent {
   public list: Product[] = [];
 
   constructor(
@@ -34,6 +34,6 @@ export class ProductListComponent {
       },
     } as ToBuyProduct;
     dialogConfig.panelClass = 'custom-dialog-container';
-    this.dialog.open(ProductDetailComponent, dialogConfig);
+    this.dialog.open(ProductDetailModalComponent, dialogConfig);
   }
 }

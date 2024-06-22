@@ -1,14 +1,14 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
-import { ToBuyProduct } from '../../../models/product.model';
+import { ToBuyProduct } from '../../models/product.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DeviceService } from '../../../../shared/services/device.service';
+import { DeviceService } from '../../../../core/services/device.service';
 
 @Component({
-  selector: 'app-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.scss'],
+  selector: 'app-product-detail-modal',
+  templateUrl: './product-detail-modal.component.html',
+  styleUrls: ['./product-detail-modal.component.scss'],
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailModalComponent implements OnInit {
   private mobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   product: ToBuyProduct;
@@ -18,7 +18,7 @@ export class ProductDetailComponent implements OnInit {
   public isMobile: boolean = false;
 
   constructor(
-    public dialogRef: MatDialogRef<ProductDetailComponent>,
+    public dialogRef: MatDialogRef<ProductDetailModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private deviceService: DeviceService
   ) {

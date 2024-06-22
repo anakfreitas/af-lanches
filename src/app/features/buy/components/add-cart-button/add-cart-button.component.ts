@@ -1,13 +1,14 @@
 import { Component, Input } from '@angular/core';
-import { ToBuyProduct } from '../../../../core/models/product.model';
-import { SnackbarService } from '../../../services/snackbar.service';
-import { CurrencyBrlPipe } from '../../../pipes/currency-brl.pipe';
+import { ToBuyProduct } from '../../models/product.model';
+import { SnackbarService } from '../../../../core/services/snackbar.service';
+import { CurrencyBrlPipe } from '../../../../shared/pipes/currency-brl.pipe';
+
 @Component({
-  selector: 'app-add-cart',
-  templateUrl: './add-cart.component.html',
-  styleUrls: ['./add-cart.component.scss'],
+  selector: 'app-add-cart-button',
+  templateUrl: './add-cart-button.component.html',
+  styleUrls: ['./add-cart-button.component.scss'],
 })
-export class AddCartComponent {
+export class AddCartButtonComponent {
   @Input() product: ToBuyProduct = {
     id: '',
     title: '',
