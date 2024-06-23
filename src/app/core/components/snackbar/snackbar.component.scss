@@ -1,0 +1,45 @@
+p.snackbar {
+  display: flex;
+  align-items: center;
+}
+
+p.snackbar > mat-icon {
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+::ng-deep .mat-mdc-snack-bar-label {
+  padding: 16px;
+}
+
+::ng-deep .mdc-snackbar {
+  border-radius: 8px;
+}
+
+::ng-deep .mdc-snackbar > .mdc-snackbar__surface {
+  border-radius: 8px;
+}
+
+::ng-deep .mdc-snackbar.snackbar_error > .mdc-snackbar__surface {
+  background-color: #dc363c !important;
+}
+
+::ng-deep .mdc-snackbar.snackbar_success > .mdc-snackbar__surface {
+  background-color: #219a5d !important;
+}
+
+::ng-deep .mdc-snackbar p {
+  margin-bottom: 0px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+::ng-deep .mdc-snackbar mat-icon {
+  margin-right: 8px;
+}
+
+@media (max-width: 480px), (max-width: 344px) {
+  ::ng-deep .mat-mdc-snack-bar-container {
+    width: calc(100vw - 16px);
+  }
+}

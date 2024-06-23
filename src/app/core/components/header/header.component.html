@@ -1,0 +1,20 @@
+<section class="app-header">
+  <mat-grid-list cols="3" rowHeight="100px">
+    <mat-grid-tile><h1>AF LANCHES</h1></mat-grid-tile>
+    <mat-grid-tile>
+      <p>
+        <mat-form-field appearance="outline" class="search">
+          <mat-label>Buscar produto</mat-label>
+          <input matInput placeholder="" />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </p>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-checkout-button
+        [quantity]="cartQuantity"
+        [value]="cartValue"
+      ></app-checkout-button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</section>

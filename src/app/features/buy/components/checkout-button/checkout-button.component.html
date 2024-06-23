@@ -1,0 +1,9 @@
+<p>
+  <span class="checkout-button__value">{{ value | currencyBrl }}</span>
+  <button mat-icon-button>
+    <mat-icon [ngClass]="{ 'checkout-button__cart-icon--shake': animate }">
+      shopping_cart
+    </mat-icon>
+    <span class="checkout-button__indicator">{{ quantity }}</span>
+  </button>
+</p>

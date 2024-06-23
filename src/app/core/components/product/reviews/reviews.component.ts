@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Review } from '../../../models/reviews.model';
-import { ReviewService } from '../../../../shared/services/review.service';
+import { ReviewService } from '../../../services/review.service';
 
 @Component({
   selector: 'app-reviews',

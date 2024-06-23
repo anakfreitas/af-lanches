@@ -1,0 +1,14 @@
+<div class="checkout">
+    <div class="carrinho">
+        <h2>Meu Carrinho</h2>
+        <p> listagem do carrinho aqui</p>
+    </div>
+    <div class="steps">
+        <app-information></app-information>
+        <app-address></app-address>
+        <app-payment></app-payment> 
+        <button mat-raised-button color="primary" type="submit" [disabled]="false" (click)="finalizePurchase()">Finalizar Comprar</button>
+        
+    </div>
+ 
+ </div>
