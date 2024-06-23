@@ -9,7 +9,7 @@ const routes: Routes = [
     component: BuyPageComponent,
   },
   {
-    path: '/checkout',
+    path: 'checkout',
     component: CheckoutPageComponent,
   },
 ];

@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./checkout-page.component.scss']
 })
 export class CheckoutPageComponent {
-
+  finalizePurchase() {
+    // Implementar lógica para finalizar a compra
+    alert('Compra finalizada com sucesso!');
+  }
 }

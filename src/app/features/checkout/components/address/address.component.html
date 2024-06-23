@@ -1,1 +1,28 @@
-<p>address works!</p>
+<h2>Endereço de Entrega</h2>
+<form [formGroup]="addressForm" class="address-form">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Nome Completo</mat-label>
+    <input matInput id="name" formControlName="name" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Endereço</mat-label>
+    <input matInput id="address" formControlName="address" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Cidade</mat-label>
+    <input matInput id="city" formControlName="city" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Estado</mat-label>
+    <input matInput id="state" formControlName="state" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>CEP</mat-label>
+    <input matInput id="zip" formControlName="zip" required>
+  </mat-form-field>
+
+</form>

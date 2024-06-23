@@ -1,1 +1,18 @@
-<p>information works!</p>
+<h2>Informações do Cliente</h2>
+      <form [formGroup]="informationForm" class="information-form" >
+       <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="name" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Telefone</mat-label>
+        <input matInput formControlName="phone" required>
+      </mat-form-field>
+  
+       </form>
