@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
@@ -14,22 +14,23 @@ import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [CurrencyBrlPipe],
-  imports: [NgFor],
+  imports: [],
   exports: [
     CommonModule,
+
     MatButtonModule,
     MatIconModule,
     MatInputModule,
     MatSnackBarModule,
-    FormsModule,
-    NgxImageZoomModule,
     MatGridListModule,
     MatFormFieldModule,
     MatListModule,
     MatCardModule,
-    NgFor,
+    FormsModule,
 
-    // Shared Things
+    NgxImageZoomModule,
+
+    // Shared things
     CurrencyBrlPipe,
   ],
 })

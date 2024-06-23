@@ -14,6 +14,7 @@
       <app-checkout-button
         [quantity]="cartQuantity"
         [value]="cartValue"
+        (onClick)="toCheckout()"
       ></app-checkout-button>
     </mat-grid-tile>
   </mat-grid-list>
