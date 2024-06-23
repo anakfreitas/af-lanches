@@ -6,6 +6,7 @@ import { ProductDetailModalComponent } from './components/product-detail-modal/p
 import { CheckoutButtonComponent } from './components/checkout-button/checkout-button.component';
 import { CurrencyBrlPipe } from '../../shared/pipes/currency-brl.pipe';
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { LayoutButtonComponent } from './components/layout-button/layout-button.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
     CheckoutButtonComponent,
     ProductDetailModalComponent,
     ProductListComponent,
+    LayoutButtonComponent,
   ],
   exports: [CheckoutButtonComponent],
   imports: [SharedModule],

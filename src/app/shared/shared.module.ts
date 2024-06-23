@@ -11,6 +11,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [CurrencyBrlPipe],
@@ -27,6 +28,7 @@ import { MatCardModule } from '@angular/material/card';
     MatFormFieldModule,
     MatListModule,
     MatCardModule,
+    MatDividerModule,
     NgFor,
 
     // Shared Things
