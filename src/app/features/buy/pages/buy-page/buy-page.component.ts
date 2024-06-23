@@ -32,7 +32,7 @@ export class BuyPageComponent {
     dialogConfig.data = {
       ...product,
       buyAction: (quantity) => {
-        this.cartService.addToCart(product, quantity);
+        this.cartService.addToCart(product.id, quantity);
         this.dialog.closeAll();
         const s = quantity > 1 ? 's' : '';
         this.snackbarService.open(

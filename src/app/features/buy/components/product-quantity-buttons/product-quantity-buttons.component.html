@@ -1,0 +1,9 @@
+<div class="quantity">
+  <button mat-mini-fab color="primary" (click)="decrement.emit()">
+    <mat-icon>remove</mat-icon>
+  </button>
+  <span class="quantity-number">{{ quantity }}</span>
+  <button mat-mini-fab color="primary" (click)="increment.emit()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

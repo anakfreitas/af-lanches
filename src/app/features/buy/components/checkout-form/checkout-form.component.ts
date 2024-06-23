@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AfInputValidators } from '../../../../core/utils/input-validators';
 import { AfInputErrors } from '../../../../core/utils/input-errors';
-import { PurchaseForm } from '../../models/purchase.model';
+import { PurchaseInfos } from '../../models/purchase.model';
 
 @Component({
   selector: 'app-checkout-form',
@@ -20,8 +20,10 @@ export class CheckoutFormComponent {
   public cardNumberErrors = AfInputErrors.cardNumber;
   public cardExpiryErrors = AfInputErrors.cardExpiry;
 
+  @Input() disableFinish = false;
+
   @Output()
-  onSuccessSubmit = new EventEmitter<PurchaseForm>();
+  onSuccessSubmit = new EventEmitter<PurchaseInfos>();
 
   constructor(private fb: FormBuilder) {
     this.checkoutForm = this.fb.group({

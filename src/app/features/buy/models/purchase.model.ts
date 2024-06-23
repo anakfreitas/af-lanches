@@ -1,4 +1,4 @@
-export interface PurchaseForm {
+export interface PurchaseInfos {
   name: string;
   email: string;
   phone: string;

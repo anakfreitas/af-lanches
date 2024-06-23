@@ -97,7 +97,12 @@
     type="numeric"
   ></app-af-input>
 
-  <button mat-raised-button color="primary" type="submit">
+  <button
+    [disabled]="disableFinish"
+    mat-raised-button
+    color="primary"
+    type="submit"
+  >
     Finalizar Comprar
   </button>
 </form>

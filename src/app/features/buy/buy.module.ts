@@ -6,6 +6,8 @@ import { ProductDetailModalComponent } from './components/product-detail-modal/p
 import { CheckoutButtonComponent } from './components/checkout-button/checkout-button.component';
 import { CheckoutFormComponent } from './components/checkout-form/checkout-form.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
+import { ProductQuantityButtonsComponent } from './components/product-quantity-buttons/product-quantity-buttons.component';
+import { FinishPageComponent } from './pages/finish-page/finish-page.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.compo
     // Pages
     BuyPageComponent,
     CheckoutPageComponent,
+    ProductQuantityButtonsComponent,
+    FinishPageComponent,
   ],
   exports: [CheckoutButtonComponent],
   imports: [SharedModule],

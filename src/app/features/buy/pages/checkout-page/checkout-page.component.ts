@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { PurchaseForm } from '../../models/purchase.model';
+import { PurchaseInfos } from '../../models/purchase.model';
+import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
+import { ProductsResume, Product } from '../../models/product.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { SnackbarService } from '../../../../core/services/snackbar.service';
+import { CheckoutService } from '../../services/checkout.service';
 
 @Component({
   selector: 'app-checkout-page',
@@ -7,9 +13,32 @@ import { PurchaseForm } from '../../models/purchase.model';
   styleUrls: ['./checkout-page.component.scss'],
 })
 export class CheckoutPageComponent {
-  finalizePurchase(purchaseForm: PurchaseForm) {
-    // Implementar lógica para finalizar a compra
-    alert('Compra finalizada com sucesso!');
-    console.log(purchaseForm);
+  public productsResume: Observable<ProductsResume[]> =
+    this.cartService.productsResume;
+
+  constructor(
+    private cartService: CartService,
+    private checkoutService: CheckoutService,
+    private snackbarService: SnackbarService
+  ) {}
+
+  incrementProduct(productId: string) {
+    this.cartService.incrementProduct(productId);
+  }
+
+  decrementProduct(productId: string) {
+    this.cartService.decrementProduct(productId);
+  }
+
+  removeProduct(productId: string) {
+    this.cartService.removeFromCart(productId);
+    this.snackbarService.open('Produto removido', {
+      icon: 'delete',
+      type: 'error',
+    });
+  }
+
+  finalizePurchase(purchaseInfos: PurchaseInfos) {
+    this.checkoutService.finishSale(purchaseInfos);
   }
 }

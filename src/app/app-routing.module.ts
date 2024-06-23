@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BuyPageComponent } from './features/buy/pages/buy-page/buy-page.component';
 import { CheckoutPageComponent } from './features/buy/pages/checkout-page/checkout-page.component';
+import { FinishPageComponent } from './features/buy/pages/finish-page/finish-page.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutPageComponent,
+  },
+  {
+    path: 'finish',
+    component: FinishPageComponent,
   },
 ];
 

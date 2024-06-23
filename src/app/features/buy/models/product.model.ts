@@ -5,6 +5,10 @@ export interface Product {
   images: string[];
 }
 
+export interface ProductsResume extends Product {
+  quantity: number;
+}
+
 export interface ToBuyProduct extends Product {
   buyAction: (quantity: number) => void;
 }
