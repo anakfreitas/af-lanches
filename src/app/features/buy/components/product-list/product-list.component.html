@@ -23,7 +23,7 @@
       </mat-card>
     </div>
   
-    <div class="list" style="margin-top: 20px" *ngIf="layout === 'card'">
+    <div class="card-list" style="margin-top: 20px" *ngIf="layout === 'card'">
       <mat-card class="card" *ngFor="let item of products">
         <mat-card-header>
           <mat-card-title-group>
@@ -47,7 +47,7 @@
       </mat-card>
     </div>
   
-    <div *ngIf="layout === 'list'">
+    <div *ngIf="layout === 'list'" class="list">
       <mat-list>
         <mat-list-item *ngFor="let item of products">
           <img

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-layout-button',
@@ -8,4 +9,10 @@ import { Component, Input } from '@angular/core';
 export class LayoutButtonComponent {
 
 @Input() layout: any;
+
+constructor(private localStorageService: LocalStorageService) {}
+
+setLayout(type: string){
+  this.localStorageService.setItem('layoutList', type);
+}
 }
