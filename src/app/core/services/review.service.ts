@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Review } from '../../core/models/reviews.model';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,7 @@ export class ReviewService {
       reviews[review.productId] = [];
     }
 
-    reviews[review.productId].push(review);
+    reviews[review.productId].push({...review, reviewId: uuidv4(), date: new Date(),});
     localStorage.setItem(this.localStorageKey, JSON.stringify(reviews));
   }
 

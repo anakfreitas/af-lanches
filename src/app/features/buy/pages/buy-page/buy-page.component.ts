@@ -5,6 +5,8 @@ import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
 import { ProductDetailModalComponent } from '../../components/product-detail-modal/product-detail-modal.component';
 import { DeviceService } from '../../../../core/services/device.service';
+import { ProductNoteComponent } from '../../components/reviews/product-note/product-note.component';
+import { Review } from '../../../../core/models/reviews.model';
 
 @Component({
   selector: 'app-buy-page',
@@ -24,6 +26,16 @@ export class BuyPageComponent {
     this.list = this.productService.allProducts;
     this.isMobile =
       this.deviceService.isMobile() || this.deviceService.screenMobile();
+
+    // const data = {
+    //   productId: '1',
+    //   name: 'Pastel de Carne',
+    // };
+    // const dialogRef = this.dialog.open(ProductNoteComponent, {
+    //   width: '300px',
+    //   height: '150px',
+    //   data: data,
+    // });
   }
 
   openProductDetails(product: Product) {
