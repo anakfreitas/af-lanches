@@ -1,0 +1,21 @@
+@import "/src/app/core/variables.scss";
+
+.information-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+button {
+  margin-top: 20px;
+  align-self: flex-start; /* ou align-self: center; para centralizar o botão */
+}
+
+
+
+
+

@@ -34,6 +34,7 @@ $af-lanches-theme: mat.define-light-theme(
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($af-lanches-theme);
+@import "./app/core/variables.scss";
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -55,4 +56,8 @@ body {
 
 .flex {
   display: flex;
+}
+
+h2{
+  color: $yellow;
 }

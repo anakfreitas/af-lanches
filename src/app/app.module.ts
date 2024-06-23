@@ -11,6 +11,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { BuyModule } from './features/buy/buy.module';
+import { CheckoutModule } from './features/checkout/checkout.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +28,7 @@ import { BuyModule } from './features/buy/buy.module';
 
     // features
     BuyModule,
+    CheckoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
