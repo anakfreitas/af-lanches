@@ -4,6 +4,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
 import { ProductDetailModalComponent } from '../../components/product-detail-modal/product-detail-modal.component';
+import { CurrencyBrlPipe } from '../../../../shared/pipes/currency-brl.pipe';
+import { SnackbarService } from '../../../../core/services/snackbar.service';
 
 @Component({
   selector: 'app-buy-page',
@@ -16,7 +18,8 @@ export class BuyPageComponent {
   constructor(
     private dialog: MatDialog,
     private cartService: CartService,
-    private productService: ProductService
+    private productService: ProductService,
+    private snackbarService: SnackbarService
   ) {
     this.list = this.productService.allProducts;
   }
@@ -31,6 +34,19 @@ export class BuyPageComponent {
       buyAction: (quantity) => {
         this.cartService.addToCart(product, quantity);
         this.dialog.closeAll();
+        const s = quantity > 1 ? 's' : '';
+        this.snackbarService.open(
+          'Produto' +
+            s +
+            ' adicionado' +
+            s +
+            ' por ' +
+            new CurrencyBrlPipe().transform(quantity * product.price),
+          {
+            icon: 'check',
+            type: 'success',
+          }
+        );
       },
     } as ToBuyProduct;
     dialogConfig.panelClass = 'custom-dialog-container';

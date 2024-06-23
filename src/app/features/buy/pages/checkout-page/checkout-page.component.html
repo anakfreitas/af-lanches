@@ -1,0 +1,11 @@
+<div class="checkout">
+  <div class="carrinho">
+    <h2>Meu Carrinho</h2>
+    <p>listagem do carrinho aqui</p>
+  </div>
+  <div class="steps">
+    <app-checkout-form
+      (onSuccessSubmit)="finalizePurchase($event)"
+    ></app-checkout-form>
+  </div>
+</div>

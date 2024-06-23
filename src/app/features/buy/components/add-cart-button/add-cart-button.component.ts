@@ -21,23 +21,8 @@ export class AddCartButtonComponent {
 
   public quantity: number = 1;
 
-  constructor(private snackbarService: SnackbarService) {}
-
   addToCart() {
-    const s = this.quantity > 1 ? 's' : '';
     this.product.buyAction(this.quantity);
-    this.snackbarService.open(
-      'Produto' +
-        s +
-        ' adicionado' +
-        s +
-        ' por ' +
-        new CurrencyBrlPipe().transform(this.quantity * this.product.price),
-      {
-        icon: 'check',
-        type: 'success',
-      }
-    );
   }
 
   increment() {

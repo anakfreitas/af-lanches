@@ -1,0 +1,103 @@
+<form [formGroup]="checkoutForm" class="checkout-form" (ngSubmit)="submit()">
+  <h2>Informações do Cliente</h2>
+  <app-af-input
+    controlName="name"
+    title="Nome Completo"
+    placeholder="Digite seu nome completo"
+    [errors]="emailErrors"
+  ></app-af-input>
+
+  <app-af-input
+    controlName="email"
+    title="E-mail"
+    placeholder="Digite seu e-mail"
+    [errors]="emailErrors"
+    type="email"
+  >
+  </app-af-input>
+
+  <app-af-input
+    controlName="phone"
+    title="Telefone"
+    placeholder="Digite seu telefone"
+    [errors]="phoneErrors"
+    mask="(00) 0 0000-0000"
+    type="numeric"
+  >
+  </app-af-input>
+
+  <h2>Endereço de Entrega</h2>
+  <app-af-input
+    controlName="address"
+    title="Endereço"
+    placeholder="Digite seu endereço"
+    [errors]="requiredError"
+  >
+  </app-af-input>
+
+  <app-af-input
+    controlName="city"
+    title="Cidade"
+    placeholder="Digite sua cidade"
+    [errors]="requiredError"
+  >
+  </app-af-input>
+
+  <app-af-input
+    controlName="state"
+    title="Estado"
+    placeholder="Digite seu estado"
+    [errors]="requiredError"
+  >
+  </app-af-input>
+
+  <app-af-input
+    controlName="cep"
+    title="CEP"
+    placeholder="Digite seu CEP"
+    [errors]="cepErrors"
+    mask="00.000-000"
+    type="numeric"
+  >
+  </app-af-input>
+
+  <h2>Pagamento</h2>
+  <app-af-input
+    controlName="cardNumber"
+    title="Número do cartão"
+    placeholder="Digite seu número do cartão"
+    [errors]="cardNumberErrors"
+    mask="0000 0000 0000 0000"
+    type="numeric"
+  >
+  </app-af-input>
+
+  <app-af-input
+    controlName="cardName"
+    title="Nome no Cartão"
+    placeholder="Digite o nome no seu cartão"
+    [errors]="nameErrors"
+  >
+  </app-af-input>
+
+  <app-af-input
+    controlName="cardExpiry"
+    title="Data de validade"
+    placeholder="Digite a data de validade do seu cartão"
+    mask="00/00"
+    type="numeric"
+    [errors]="cardExpiryErrors"
+  ></app-af-input>
+
+  <app-af-input
+    controlName="cardCvv"
+    title="Código de Segurança"
+    placeholder="Digite o código de segurança do seu cartão"
+    [errors]="requiredError"
+    type="numeric"
+  ></app-af-input>
+
+  <button mat-raised-button color="primary" type="submit">
+    Finalizar Comprar
+  </button>
+</form>
