@@ -1,12 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Product, ToBuyProduct } from '../../models/product.model';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CartService } from '../../services/cart.service';
+import { Component, OnInit } from '@angular/core';
+import { Product } from '../../models/product.model';
 import { ProductService } from '../../../../core/services/product.service';
-import { ProductDetailModalComponent } from '../../components/product-detail-modal/product-detail-modal.component';
-import { CurrencyBrlPipe } from '../../../../shared/pipes/currency-brl.pipe';
-import { SnackbarService } from '../../../../core/services/snackbar.service';
-import { DeviceService } from '../../../../core/services/device.service';
 import { Subscription } from 'rxjs';
 import { LocalStorageService } from '../../services/local-storage.service';
 
@@ -28,12 +22,18 @@ export class BuyPageComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private localStorageService: LocalStorageService
-  ) {
-    this.productService.allProducts.subscribe(
-      (allProducts) => (this.list = allProducts)
-    );
-  }
+  ) {}
+
   ngOnInit(): void {
+    this.productService.getAllProducts().subscribe({
+      next: (res) => {
+        this.list = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+
     this.layoutList = this.localStorageService.getItem('layoutList');
 
     this.storageSubscription = this.localStorageService
