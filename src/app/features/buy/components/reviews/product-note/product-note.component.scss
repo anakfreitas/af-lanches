@@ -1,0 +1,29 @@
+@import "/src/app/core/variables.scss";
+
+.product-note-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  .content {
+    span {
+      cursor: pointer;
+    }
+
+    .stars mat-icon {
+      color: #ffcc00;
+      margin-left: 10px;
+    }
+  }
+
+  .bnt-actions {
+    margin-top: 10px;
+
+    .submit {
+      background-color: $bg-secondary !important;
+      color: #fff;
+    }
+  }
+}

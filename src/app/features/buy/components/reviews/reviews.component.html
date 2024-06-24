@@ -1,0 +1,19 @@
+<div class="review">
+  <div class="review-header">
+    <div class="review-info">
+      <h3>{{ getLabel(review.rating) }}</h3>
+      <div class="stars">
+        <mat-icon
+          *ngFor="let star of stars"
+          [class.filled]="star <= review.rating"
+        >
+          star
+        </mat-icon>
+      </div>
+    </div>
+    <div class="user-info">
+      <h4>por {{ review.name }}</h4>
+      <p>em {{ review.date | date: 'dd/MM/yyyy' }}</p>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,9 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
-import { ToBuyProduct } from '../../models/product.model';
+import { Product, ToBuyProduct } from '../../models/product.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DeviceService } from '../../../../core/services/device.service';
+import { Review } from '../../../../core/models/reviews.model';
+import { ReviewService } from '../../../../core/services/review.service';
 
 @Component({
   selector: 'app-product-detail-modal',
@@ -16,18 +18,22 @@ export class ProductDetailModalComponent implements OnInit {
   public currentIndex = 0;
 
   public isMobile: boolean = false;
+  public reviews!: Review[];
 
   constructor(
     public dialogRef: MatDialogRef<ProductDetailModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private deviceService: DeviceService
+    private deviceService: DeviceService,
+    private reviewService: ReviewService
   ) {
     this.product = data;
+    console.log(this.product);
   }
 
   ngOnInit(): void {
     this.isMobile =
       this.deviceService.isMobile() || this.deviceService.screenMobile();
+    this.reviews = this.reviewService.getReviews('1');
   }
 
   @HostListener('window:resize', ['$event'])

@@ -48,4 +48,12 @@
       <app-add-cart-button [product]="product" />
     </div>
   </div>
+
+  <div class="reviews" *ngIf="reviews.length > 0">
+    <p>Avaliações</p>
+    <app-reviews
+      *ngFor="let review of reviews"
+      [review]="review">
+    </app-reviews>
+  </div>
 </div>

@@ -7,6 +7,7 @@
   text-align: center;
   margin: 20px 0;
   padding: 20px;
+  overflow-x: hidden;
 
   .close {
     position: absolute;
@@ -60,6 +61,15 @@
   border-radius: 6px;
 }
 
+.reviews {
+  display: flex;
+  flex-direction: column;
+  padding-top: 25px;
+  height: 250px;
+  overflow-y: auto;
+  width: 100%;
+}
+
 @media screen and (max-width: 900px) {
   .detail-content {
     flex-direction: column;
@@ -72,6 +82,12 @@
       margin-right: auto;
       margin-top: 20px;
     }
+  }
+
+  ::ng-deep .ngxImageZoomContainer,
+  ::ng-deep .ngxImageZoomThumbnail {
+    height: 350px;
+    width: 100% !important;
   }
 }
 

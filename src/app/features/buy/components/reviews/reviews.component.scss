@@ -1,0 +1,45 @@
+h3,
+h4,
+p {
+  margin-bottom: 0;
+}
+
+.review {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+.review-header {
+  display: flex;
+  flex-direction: column;
+
+  .review-info {
+    display: flex;
+    align-items: center;
+  }
+  .stars {
+    display: flex;
+  }
+
+  .stars mat-icon {
+    color: #ffcc00;
+    margin-left: 10px;
+  }
+
+  .stars mat-icon.filled {
+    color: #ffcc00;
+  }
+
+  .stars mat-icon {
+    color: #ccc;
+  }
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
