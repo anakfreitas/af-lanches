@@ -34,9 +34,8 @@ export class ProductDetailModalComponent implements OnInit {
   }
 
   public getReviews() {
-    this.reviewService.getReviews(this.product.id).subscribe({
+    this.reviewService.getReviewsByProduct(this.product.id).subscribe({
       next: (res) => {
-        console.log(res);
         this.reviews = res;
       },
       error: (err) => {

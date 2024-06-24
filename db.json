@@ -1,5 +1,5 @@
 {
-  "products":  [
+  "products": [
     {
       "id": "1",
       "title": "Pastel de Carne",
@@ -49,6 +49,7 @@
   "reviews": [
     {
       "productId": "1",
+      "productName": "Pastel de Carne",
       "name": "Pastel de Carne",
       "rating": 4,
       "reviewId": "a2e42d8d-4814-4305-bb0d-72b3529fe434",
@@ -56,24 +57,54 @@
     },
     {
       "productId": "2",
+      "productName": "Pastel de Queijo",
       "name": "Pastel de Frango",
       "rating": 5,
       "reviewId": "1ee922c4-c5fb-4de3-9f8f-0f3eb39bce39",
       "date": "2024-06-24T00:50:52.567Z"
-  },
-  {
+    },
+    {
       "productId": "2",
+      "productName": "Pastel de Queijo",
       "name": "Pastel de Frango",
       "rating": 3,
       "reviewId": "901dea2a-d480-46e8-8373-2a91389f2b2b",
       "date": "2024-06-24T00:50:59.434Z"
-  },
-  {
+    },
+    {
       "productId": "2",
+      "productName": "Pastel de Queijo",
       "name": "User Teste",
       "rating": 4,
       "reviewId": "ff7adfce-ac56-48bd-a612-42ec8077111c",
       "date": "2024-06-24T00:51:32.969Z"
-  }
+    }
+  ],
+  "top-items": [
+    {
+      "id": "1",
+      "title": "Pastel de Carne",
+      "quantity": 2
+    },
+    {
+      "id": "2",
+      "title": "Pastel de Queijo",
+      "quantity": 5
+    },
+    {
+      "id": "3",
+      "title": "Pastel de Frango",
+      "quantity": 4
+    },
+    {
+      "id": "4",
+      "title": "Pastel de Misto",
+      "quantity": 7
+    },
+    {
+      "id": "5",
+      "title": "Pastel de Pizza",
+      "quantity": 3
+    }
   ]
 }

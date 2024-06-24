@@ -1,17 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { apiUrl } from '../../../../env/dev.env';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DashboardService {
-  public getTopSellingProducts() {
-    const items = [
-      { id: '1', quantity: 2 },
-      { id: '2', quantity: 5 },
-      { id: '3', quantity: 4 },
-      { id: '4', quantity: 7 },
-      { id: '5', quantity: 3 },
-    ];
-    return items;
+  private apiUrl: string = '';
+  constructor(private http: HttpClient) {
+    this.apiUrl = apiUrl;
+  }
+
+  public getTopSellingProducts(): Observable<
+    { id: string; title: string; quantity: number }[]
+  > {
+    return this.http.get<{ id: string; title: string; quantity: number }[]>(
+      `${this.apiUrl}/top-items`
+    );
   }
 }

@@ -30,6 +30,7 @@ export class ProductNoteComponent {
     const review: Review = {
       ...this.data,
       rating: this.rating,
+      productName: this.data.title || '',
     };
 
     this.reviewService.saveReview(review);

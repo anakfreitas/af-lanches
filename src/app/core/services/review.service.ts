@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Review } from '../../core/models/reviews.model';
+import { Review, ReviewAverage } from '../../core/models/reviews.model';
 import { v4 as uuidv4 } from 'uuid';
 import { HttpClient } from '@angular/common/http';
 import { apiUrl } from '../../../env/dev.env';
@@ -16,10 +16,14 @@ export class ReviewService {
     this.apiUrl = apiUrl;
   }
 
+  getReviews(): Observable<Review[]> {
+    return this.http.get<Review[]>(`${this.apiUrl}/reviews`);
+  }
+
   /**
    * Obtém as avalições de um produto
    */
-  getReviews(productId: string): Observable<Review[]> {
+  getReviewsByProduct(productId: string): Observable<Review[]> {
     return this.http.get<Review[]>(`${this.apiUrl}/reviews`).pipe(
       map((reviews) => {
         const findReviews = reviews.filter(
@@ -67,23 +71,5 @@ export class ReviewService {
         return '';
       }
     }
-  }
-
-  /**
-   * Obtém a média das classificações
-   */
-  getAverageRatings(): { productId: string, averageRating: number }[] {
-    const allReviews = localStorage.getItem(this.localStorageKey);
-    const reviews = allReviews ? JSON.parse(allReviews) : {};
-    const averageRatings = [];
-
-    for (const productId in reviews) {
-      const productReviews = reviews[productId];
-      const totalRatings = productReviews.reduce((sum: number, review: any) => sum + review.rating, 0);
-      const averageRating = totalRatings / productReviews.length;
-      averageRatings.push({ productId, averageRating });
-    }
-
-    return averageRatings;
   }
 }

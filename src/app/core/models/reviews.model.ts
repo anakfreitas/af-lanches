@@ -1,7 +1,7 @@
 export interface Review {
-  reviewId?: string, productId: string, name: string, date?: Date, rating: number
+  reviewId?: string, productId: string, productName: string, name: string, date?: Date | string, rating: number
 }
 
 export interface ReviewAverage{
-  productId: string, averageRating: number
+  productId: string; title: string; averageRating: number
 }
