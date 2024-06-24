@@ -26,9 +26,8 @@ import { ProductNoteComponent } from './components/reviews/product-note/product-
     FinishPageComponent,
     ReviewsComponent,
     ProductNoteComponent
-
   ],
   exports: [CheckoutButtonComponent],
-  imports: [],
+  imports: [SharedModule],
 })
 export class BuyModule {}
