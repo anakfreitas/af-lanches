@@ -11,11 +11,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { AfInputComponent } from './components/af-input/af-input.component';
 import { NgxMaskModule } from 'ngx-mask';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
@@ -48,6 +48,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatBadgeModule,
     MatSelectModule,
     MatDialogModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatDividerModule,
 
     // Form imports
     ReactiveFormsModule,

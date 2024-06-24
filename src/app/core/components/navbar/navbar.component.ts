@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   constructor(private router: Router) {}
 
-  toHome() {
-    this.router.navigate(['/']);
+  goTo(path: string) {
+    this.router.navigate([path]);
   }
 }

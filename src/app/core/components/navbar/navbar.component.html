@@ -1,10 +1,12 @@
 <section class="navbar">
-  <button mat-button (click)="toHome()">Inicio</button>
+  <button mat-button (click)="goTo('/')">Inicio</button>
 
   <button mat-button [matMenuTriggerFor]="belowMenu">Categorias</button>
   <mat-menu #belowMenu="matMenu" yPosition="below">
     <button mat-menu-item>Pastéis</button>
     <button mat-menu-item>Coxinhas</button>
   </mat-menu>
+
+  <button mat-button (click)="goTo('/dashboard')">Dashboard</button>
 
 </section>

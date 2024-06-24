@@ -3,6 +3,7 @@ import { ProductsResume } from '../models/product.model';
 import { BehaviorSubject, map, switchMap } from 'rxjs';
 import { Cart } from '../models/cart.model';
 import { ProductService } from '../../../core/services/product.service';
+import { SnackbarService } from '../../../core/services/snackbar.service';
 
 const cartKey = 'cart_state';
 
@@ -55,8 +56,38 @@ export class CartService {
     })
   );
 
-  constructor(private productService: ProductService) {
-    this._cart.next(JSON.parse(localStorage.getItem(cartKey) ?? '{}'));
+  constructor(
+    private productService: ProductService,
+    private snackbarService: SnackbarService
+  ) {
+    this.hydrateCart();
+  }
+
+  /** In future, we can use an 'oldProduct' endpoint to informs to user which product have expired.  */
+  private hydrateCart() {
+    const currentCart = JSON.parse(
+      localStorage.getItem(cartKey) ?? '{}'
+    ) as Cart;
+    this.productService.getAllProducts().subscribe((allProducts) => {
+      let expiredProductsQuantity = 0;
+      Object.keys(currentCart).forEach((productId) => {
+        if (!allProducts.find((product) => product.id === productId)) {
+          expiredProductsQuantity++;
+          delete currentCart[productId];
+        }
+      });
+
+      if (expiredProductsQuantity > 0) {
+        const s = expiredProductsQuantity > 1 ? 's' : '';
+
+        this.snackbarService.open('Produto' + s + ' do carrinho expirado' + s, {
+          type: 'error',
+          icon: 'error',
+        });
+      }
+
+      this._cart.next(currentCart);
+    });
   }
 
   private setCart(currentCart: Cart) {

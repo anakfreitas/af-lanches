@@ -34,20 +34,12 @@ export class ReviewService {
     );
   }
 
-  saveReview(review: Review): void {
-    const allReviews = localStorage.getItem(this.localStorageKey);
-    const reviews = allReviews ? JSON.parse(allReviews) : {};
-
-    if (!reviews[review.productId]) {
-      reviews[review.productId] = [];
-    }
-
-    reviews[review.productId].push({
+  saveReview(review: Review): Observable<Review> {
+    return this.http.post<Review>(`${this.apiUrl}/reviews`, {
       ...review,
       reviewId: uuidv4(),
       date: new Date(),
     });
-    localStorage.setItem(this.localStorageKey, JSON.stringify(reviews));
   }
 
   getRatingLabel(rating: number): string {
