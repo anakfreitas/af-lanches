@@ -11,8 +11,6 @@ import { ReviewService } from '../../../../core/services/review.service';
   styleUrls: ['./product-detail-modal.component.scss'],
 })
 export class ProductDetailModalComponent implements OnInit {
-  private mobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
   product: ToBuyProduct;
 
   public currentIndex = 0;
@@ -27,13 +25,12 @@ export class ProductDetailModalComponent implements OnInit {
     private reviewService: ReviewService
   ) {
     this.product = data;
-    console.log(this.product);
   }
 
   ngOnInit(): void {
     this.isMobile =
       this.deviceService.isMobile() || this.deviceService.screenMobile();
-    this.reviews = this.reviewService.getReviews('1');
+    this.reviews = this.reviewService.getReviews(this.product.id);
   }
 
   @HostListener('window:resize', ['$event'])

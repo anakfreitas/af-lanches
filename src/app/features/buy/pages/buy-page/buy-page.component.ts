@@ -28,8 +28,8 @@ export class BuyPageComponent {
       this.deviceService.isMobile() || this.deviceService.screenMobile();
 
     // const data = {
-    //   productId: '1',
-    //   name: 'Pastel de Carne',
+    //   productId: '3',
+    //   name: 'User Teste',
     // };
     // const dialogRef = this.dialog.open(ProductNoteComponent, {
     //   width: '300px',

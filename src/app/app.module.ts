@@ -12,11 +12,10 @@ import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { BuyModule } from './features/buy/buy.module';
 import { CheckoutModule } from './features/checkout/checkout.module';
-import { ChartsComponent } from './features/dashboard/components/charts/charts.component';
-import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { DashboardModule } from './features/dashboard/dashboard.module';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, ChartsComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +29,7 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
     // features
     BuyModule,
     CheckoutModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent],

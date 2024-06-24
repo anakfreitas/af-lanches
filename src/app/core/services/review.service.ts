@@ -31,10 +31,6 @@ export class ReviewService {
     localStorage.setItem(this.localStorageKey, JSON.stringify(reviews));
   }
 
-  clearReviews(): void {
-    localStorage.removeItem(this.localStorageKey);
-  }
-
   getRatingLabel(rating: number): string {
     switch (rating) {
       case 1: {
@@ -56,5 +52,23 @@ export class ReviewService {
         return '';
       }
     }
+  }
+
+  /**
+   * Obtém a média das classificações
+   */
+  getAverageRatings(): { productId: string, averageRating: number }[] {
+    const allReviews = localStorage.getItem(this.localStorageKey);
+    const reviews = allReviews ? JSON.parse(allReviews) : {};
+    const averageRatings = [];
+
+    for (const productId in reviews) {
+      const productReviews = reviews[productId];
+      const totalRatings = productReviews.reduce((sum: number, review: any) => sum + review.rating, 0);
+      const averageRating = totalRatings / productReviews.length;
+      averageRatings.push({ productId, averageRating });
+    }
+
+    return averageRatings;
   }
 }
