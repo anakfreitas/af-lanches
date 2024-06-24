@@ -1,5 +1,11 @@
 @import "/src/app/core/variables.scss";
 
+.layout-button{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .button-row {
     display: flex;
     width: 100%;
@@ -24,4 +30,18 @@
 
 .active{
   background-color: $bg-secondary;
+}
+
+
+.filter{
+  background-color: $bg-secondary;
+  border-radius: 5px;
+  button{
+    font-size: 12px;
+    height: 20px;
+    color: $primary ;
+  }
+  ::ng-deep .mat-badge-content {
+    background-color: $bg-primary;
+  }
 }

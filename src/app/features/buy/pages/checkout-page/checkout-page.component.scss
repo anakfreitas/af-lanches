@@ -27,7 +27,7 @@ h1 {
 
 .resume-buttons {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 
   margin-top: 24px;
@@ -36,3 +36,4 @@ h1 {
     background-color: $primary;
   }
 }
+

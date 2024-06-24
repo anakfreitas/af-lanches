@@ -9,6 +9,14 @@ import { LocalStorageService } from '../../services/local-storage.service';
 export class LayoutButtonComponent {
 
 @Input() layout: any;
+public selectedValue: string | undefined;
+
+ordemFilters = [
+  {value: 'menor-preco', viewValue: 'Menor preço'},
+  {value: 'mais-vendidos', viewValue: 'Mais vendidos'},
+  {value: 'maior-preço', viewValue: 'Maior preço'},
+];
+
 
 constructor(private localStorageService: LocalStorageService) {}
 
