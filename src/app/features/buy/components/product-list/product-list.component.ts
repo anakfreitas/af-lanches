@@ -30,7 +30,7 @@ export class ProductListComponent {
     dialogConfig.data = {
       ...product,
       buyAction: (quantity) => {
-        this.cartService.addToCart(product, quantity);
+        this.cartService.addToCart(product.id, quantity);
         this.dialog.closeAll();
       },
     } as ToBuyProduct;
