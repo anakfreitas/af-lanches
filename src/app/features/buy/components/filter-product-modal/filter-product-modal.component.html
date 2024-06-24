@@ -1,4 +1,7 @@
 <section class="filter-product">
+    <button class="close" color="warn" (click)="closeModal()">
+        <mat-icon>close</mat-icon>
+      </button>
     <h2>Filtrar por:</h2>
     <section>
         <mat-radio-group [(ngModel)]="labelPosition"  class="radio-list">
