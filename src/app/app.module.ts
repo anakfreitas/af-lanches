@@ -12,10 +12,11 @@ import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { BuyModule } from './features/buy/buy.module';
 import { CheckoutModule } from './features/checkout/checkout.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ChartsComponent } from './features/dashboard/components/charts/charts.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DashboardComponent, ChartsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

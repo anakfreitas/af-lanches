@@ -5,6 +5,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { ProductDetailModalComponent } from './components/product-detail-modal/product-detail-modal.component';
 import { CheckoutButtonComponent } from './components/checkout-button/checkout-button.component';
 import { CurrencyBrlPipe } from '../../shared/pipes/currency-brl.pipe';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
