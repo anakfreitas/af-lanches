@@ -10,6 +10,9 @@ import { ProductQuantityButtonsComponent } from './components/product-quantity-b
 import { FinishPageComponent } from './pages/finish-page/finish-page.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ProductNoteComponent } from './components/reviews/product-note/product-note.component';
+import { CurrencyBrlPipe } from '../../shared/pipes/currency-brl.pipe';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { LayoutButtonComponent } from './components/layout-button/layout-button.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { ProductNoteComponent } from './components/reviews/product-note/product-
     ProductQuantityButtonsComponent,
     FinishPageComponent,
     ReviewsComponent,
-    ProductNoteComponent
+    ProductNoteComponent,
+    ProductListComponent,
+    LayoutButtonComponent,
   ],
   exports: [CheckoutButtonComponent],
   imports: [SharedModule],

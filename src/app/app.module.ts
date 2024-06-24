@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material
-import { MatDialogModule } from '@angular/material/dialog';
-
 import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { BuyModule } from './features/buy/buy.module';
