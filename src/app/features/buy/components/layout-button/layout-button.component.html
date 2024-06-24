@@ -1,0 +1,7 @@
+<section>
+    <div class="button-row">
+        <mat-icon class="icon"  [ngClass]="{'active': layout === 'grid'}" (click)="setLayout('grid')">view_module</mat-icon>
+        <mat-icon class="icon"  [ngClass]="{'active': layout === 'card'}" (click)="setLayout('card')">border_all</mat-icon>
+        <mat-icon class="icon"  [ngClass]="{'active': layout === 'list'}" (click)="setLayout('list')">list</mat-icon>
+    </div>
+</section>

@@ -1,0 +1,65 @@
+@import "/src/app/core/variables.scss";
+
+.header-product-list {
+  display: flex;
+  padding: 0px 10%;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    color: $red;
+  }
+}
+
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+.card {
+  width: 300px;
+}
+
+.product-list {
+  padding: 0px 10%;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  flex-wrap: wrap;
+  // justify-content: center;
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+.list {
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+button {
+  width: 100%;
+  background-color: $bg-secondary !important;
+}
+
+.button-list {
+  position: absolute;
+  width: 50px;
+  background-color: $bg-secondary !important;
+  right: 0px;
+  bottom: 20px;
+}
+
+mat-list-item {
+  border-bottom: 1px solid $font-accent;
+}
+
+@keyframes fade {
+  from {opacity: 0%;}
+  to {opacity: 100%;}
+}
