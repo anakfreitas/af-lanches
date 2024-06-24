@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProductsResume } from '../models/product.model';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, combineLatest, map } from 'rxjs';
 import { Cart } from '../models/cart.model';
 import { ProductService } from '../../../core/services/product.service';
 
@@ -16,24 +16,32 @@ export class CartService {
   public currentQuantity = this.cart.pipe(
     map((cart) => Object.keys(cart).reduce((p, c) => p + cart[c], 0))
   );
-  public currentValue = this.cart.pipe(
-    map((cart) => {
-      const productPrices: { [id: string]: number } =
-        this.productService.allProducts.reduce(
-          (p, c) => ({ ...p, [c.id]: c.price }),
-          {}
-        );
+  public currentValue = combineLatest([
+    this.cart,
+    this.productService.allProducts,
+  ]).pipe(
+    map(([cart, allProducts]) => {
+      const productPrices: { [id: string]: number } = allProducts.reduce(
+        (p, c) => ({ ...p, [c.id]: c.price }),
+        {}
+      );
       return Object.keys(cart).reduce(
         (p, c) => p + productPrices[c] * cart[c],
         0
       );
     })
   );
-  public productsResume = this.cart.pipe(
-    map((cart) => {
+
+  public productsResume = combineLatest([
+    this.cart,
+    this.productService.allProducts,
+  ]).pipe(
+    map(([cart, allProducts]) => {
       const productsResume: ProductsResume[] = [];
       for (const productId of Object.keys(cart)) {
-        const product = this.productService.getProductById(productId);
+        const product = allProducts.find(
+          (_product) => _product.id === productId
+        )!;
         productsResume.push({
           id: product.id,
           images: product.images,

@@ -24,19 +24,11 @@ export class BuyPageComponent {
     private snackbarService: SnackbarService,
     private deviceService: DeviceService
   ) {
-    this.list = this.productService.allProducts;
+    this.productService.allProducts.subscribe(
+      (allProducts) => (this.list = allProducts)
+    );
     this.isMobile =
       this.deviceService.isMobile() || this.deviceService.screenMobile();
-
-    // const data = {
-    //   productId: '3',
-    //   name: 'User Teste',
-    // };
-    // const dialogRef = this.dialog.open(ProductNoteComponent, {
-    //   width: '300px',
-    //   height: '150px',
-    //   data: data,
-    // });
   }
 
   openProductDetails(product: Product) {
