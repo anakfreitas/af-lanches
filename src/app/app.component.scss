@@ -1,0 +1,10 @@
+@import "./core/variables.scss";
+
+mat-progress-spinner {
+  margin: auto;
+  margin-top: 25vh;
+}
+
+::ng-deep .mat-mdc-progress-spinner * {
+  stroke: $primary !important;
+}

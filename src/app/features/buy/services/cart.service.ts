@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProductsResume } from '../models/product.model';
-import { BehaviorSubject, map, switchMap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map } from 'rxjs';
 import { Cart } from '../models/cart.model';
 import { ProductService } from '../../../core/services/product.service';
 import { SnackbarService } from '../../../core/services/snackbar.service';
@@ -17,42 +17,41 @@ export class CartService {
   public currentQuantity = this.cart.pipe(
     map((cart) => Object.keys(cart).reduce((p, c) => p + cart[c], 0))
   );
-  public currentValue = this.cart.pipe(
-    switchMap((cart) => {
-      return this.productService.getAllProducts().pipe(
-        map((products) => {
-          const productPrices: { [id: string]: number } = products.reduce(
-            (p, c) => ({ ...p, [c.id]: c.price }),
-            {}
-          );
-          return Object.keys(cart).reduce(
-            (p, c) => p + productPrices[c] * cart[c],
-            0
-          );
-        })
+  public currentValue = combineLatest([
+    this.cart,
+    this.productService.allProducts,
+  ]).pipe(
+    map(([cart, allProducts]) => {
+      const productPrices: { [id: string]: number } = allProducts.reduce(
+        (p, c) => ({ ...p, [c.id]: c.price }),
+        {}
+      );
+      return Object.keys(cart).reduce(
+        (p, c) => p + productPrices[c] * cart[c],
+        0
       );
     })
   );
-  public productsResume = this.cart.pipe(
-    switchMap((cart) => {
-      return this.productService.getAllProducts().pipe(
-        map((products) => {
-          const productsResume: ProductsResume[] = [];
-          for (const productId of Object.keys(cart)) {
-            const product = products.find(
-              (_product) => _product.id === productId
-            )!;
-            productsResume.push({
-              id: product.id,
-              images: product.images,
-              price: product.price,
-              title: product.title,
-              quantity: cart[productId],
-            });
-          }
-          return productsResume;
-        })
-      );
+
+  public productsResume = combineLatest([
+    this.cart,
+    this.productService.allProducts,
+  ]).pipe(
+    map(([cart, allProducts]) => {
+      const productsResume: ProductsResume[] = [];
+      for (const productId of Object.keys(cart)) {
+        const product = allProducts.find(
+          (_product) => _product.id === productId
+        )!;
+        productsResume.push({
+          id: product.id,
+          images: product.images,
+          price: product.price,
+          title: product.title,
+          quantity: cart[productId],
+        });
+      }
+      return productsResume;
     })
   );
 
@@ -68,7 +67,7 @@ export class CartService {
     const currentCart = JSON.parse(
       localStorage.getItem(cartKey) ?? '{}'
     ) as Cart;
-    this.productService.getAllProducts().subscribe((allProducts) => {
+    this.productService.allProducts.subscribe((allProducts) => {
       let expiredProductsQuantity = 0;
       Object.keys(currentCart).forEach((productId) => {
         if (!allProducts.find((product) => product.id === productId)) {
@@ -76,11 +75,10 @@ export class CartService {
           delete currentCart[productId];
         }
       });
-
       if (expiredProductsQuantity > 0) {
         const s = expiredProductsQuantity > 1 ? 's' : '';
 
-        this.snackbarService.open('Produto' + s + ' do carrinho expirado' + s, {
+        this.snackbarService.open('Produto' + s + 'do carrinho expirado' + s, {
           type: 'error',
           icon: 'error',
         });

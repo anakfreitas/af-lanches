@@ -3,7 +3,6 @@ import Chart, { ChartConfiguration, registerables } from 'chart.js/auto';
 import { ReviewService } from '../../../../core/services/review.service';
 import { ProductService } from '../../../../core/services/product.service';
 import { DashboardService } from '../../services/dashboard.service';
-import { Product } from '../../../buy/models/product.model';
 interface Option {
   label: string;
   value: number;
@@ -31,8 +30,6 @@ export class DashboardPageComponent {
 
   public selectedOption!: Option;
 
-  public items!: Product[];
-
   constructor(
     private reviewService: ReviewService,
     private productService: ProductService,
@@ -40,19 +37,11 @@ export class DashboardPageComponent {
   ) {}
 
   ngOnInit(): void {
-    this.selectedOption = {
+    (this.selectedOption = {
       label: 'Mais vendidos',
       value: 1,
-    };
-    this.productService.getAllProducts().subscribe({
-      next: (res) => {
-        this.items = res;
-        this.initReviewsChart();
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    }),
+      this.initReviewsChart();
   }
 
   public changeOption(value: Option) {
@@ -67,7 +56,7 @@ export class DashboardPageComponent {
   private initReviewsChart() {
     const averageRatings = this.reviewService.getAverageRatings();
     const labels = averageRatings.map(
-      (ar) => this.items.find((item) => item.id === ar.productId)?.title
+      (ar) => this.productService.getProductById(ar.productId).title
     );
     const data = averageRatings.map((ar) => ar.averageRating);
 
@@ -101,14 +90,10 @@ export class DashboardPageComponent {
 
   private initSalessChart() {
     const items = this.dashboardService.getTopSellingProducts();
-    const data = items.map((item) => item.quantity);
-    const labels = items.map((product) =>
-      this.productService.getProductById(product.id).subscribe({
-        next: (res) => {
-          console.log(res);
-        },
-      })
+    const labels = items.map(
+      (product) => this.productService.getProductById(product.id).title
     );
+    const data = items.map((item) => item.quantity);
 
     const chartConfig: ChartConfiguration = {
       type: 'pie',
