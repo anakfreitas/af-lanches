@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ProductsResume } from '../models/product.model';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, switchMap } from 'rxjs';
 import { Cart } from '../models/cart.model';
-import { ProductService } from './product.service';
+import { ProductService } from '../../../core/services/product.service';
 
 const cartKey = 'cart_state';
 
@@ -17,34 +17,41 @@ export class CartService {
     map((cart) => Object.keys(cart).reduce((p, c) => p + cart[c], 0))
   );
   public currentValue = this.cart.pipe(
-    map((cart) => {
-      const productPrices: { [id: string]: number } =
-        this.productService.allProducts.reduce(
-          (p, c) => ({ ...p, [c.id]: c.price }),
-          {}
-        );
-      return Object.keys(cart).reduce(
-        (p, c) => p + productPrices[c] * cart[c],
-        0
+    switchMap((cart) => {
+      return this.productService.getAllProducts().pipe(
+        map((products) => {
+          const productPrices: { [id: string]: number } = products.reduce(
+            (p, c) => ({ ...p, [c.id]: c.price }),
+            {}
+          );
+          return Object.keys(cart).reduce(
+            (p, c) => p + productPrices[c] * cart[c],
+            0
+          );
+        })
       );
     })
   );
   public productsResume = this.cart.pipe(
-    map((cart) => {
-      const productsResume: ProductsResume[] = [];
-      for (const productId of Object.keys(cart)) {
-        const product = this.productService.allProducts.find(
-          (_product) => _product.id === productId
-        )!;
-        productsResume.push({
-          id: product.id,
-          images: product.images,
-          price: product.price,
-          title: product.title,
-          quantity: cart[productId],
-        });
-      }
-      return productsResume;
+    switchMap((cart) => {
+      return this.productService.getAllProducts().pipe(
+        map((products) => {
+          const productsResume: ProductsResume[] = [];
+          for (const productId of Object.keys(cart)) {
+            const product = products.find(
+              (_product) => _product.id === productId
+            )!;
+            productsResume.push({
+              id: product.id,
+              images: product.images,
+              price: product.price,
+              title: product.title,
+              quantity: cart[productId],
+            });
+          }
+          return productsResume;
+        })
+      );
     })
   );
 

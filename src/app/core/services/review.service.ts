@@ -1,22 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Review } from '../../core/models/reviews.model';
+import { Review, ReviewAverage } from '../../core/models/reviews.model';
 import { v4 as uuidv4 } from 'uuid';
+import { HttpClient } from '@angular/common/http';
+import { apiUrl } from '../../../env/dev.env';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReviewService {
   private localStorageKey = 'reviews';
+  private apiUrl = '';
 
-  constructor() {}
+  constructor(private http: HttpClient) {
+    this.apiUrl = apiUrl;
+  }
+
+  getReviews(): Observable<Review[]> {
+    return this.http.get<Review[]>(`${this.apiUrl}/reviews`);
+  }
 
   /**
    * Obtém as avalições de um produto
    */
-  getReviews(productId: string): Review[] {
-    const allReviews = localStorage.getItem(this.localStorageKey);
-    const reviews = allReviews ? JSON.parse(allReviews) : {};
-    return reviews[productId] || [];
+  getReviewsByProduct(productId: string): Observable<Review[]> {
+    return this.http.get<Review[]>(`${this.apiUrl}/reviews`).pipe(
+      map((reviews) => {
+        const findReviews = reviews.filter(
+          (review) => review.productId === productId
+        );
+        return findReviews;
+      })
+    );
   }
 
   saveReview(review: Review): void {
@@ -27,12 +42,12 @@ export class ReviewService {
       reviews[review.productId] = [];
     }
 
-    reviews[review.productId].push({...review, reviewId: uuidv4(), date: new Date(),});
+    reviews[review.productId].push({
+      ...review,
+      reviewId: uuidv4(),
+      date: new Date(),
+    });
     localStorage.setItem(this.localStorageKey, JSON.stringify(reviews));
-  }
-
-  clearReviews(): void {
-    localStorage.removeItem(this.localStorageKey);
   }
 
   getRatingLabel(rating: number): string {

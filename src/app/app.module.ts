@@ -11,21 +11,27 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { BuyModule } from './features/buy/buy.module';
+import { HttpClientModule } from '@angular/common/http';
+import { DashboardModule } from './features/dashboard/dashboard.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    SharedModule,
+
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
 
-    // For injections
-    MatDialogModule,
+    // Standalone components
     HeaderComponent,
     NavbarComponent,
 
     // features
     BuyModule,
+    DashboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
