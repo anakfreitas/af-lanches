@@ -6,7 +6,6 @@ import { ProductDetailModalComponent } from '../../components/product-detail-mod
 import { DeviceService } from '../../../../core/services/device.service';
 import { SnackbarService } from '../../../../core/services/snackbar.service';
 import { CurrencyBrlPipe } from '../../../../shared/pipes/currency-brl.pipe';
-import { FilterProductModalComponent } from '../filter-product-modal/filter-product-modal.component';
 
 @Component({
   selector: 'app-product-list',
