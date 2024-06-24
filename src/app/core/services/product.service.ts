@@ -53,18 +53,8 @@ export class ProductService {
     },
   ];
 
-  public getProductById(id: string): Product | undefined {
-    return this.allProducts.find((product) => product.id === id);
-  }
-
-  public getTopSellingProducts() {
-    const items = [
-      { id: '1', title: 'Pastel de Carne', quantity: 2 },
-      { id: '2', title: 'Pastel de Queijo', quantity: 5 },
-      { id: '3', title: 'Pastel de Frango', quantity: 4 },
-      { id: '4', title: 'Pastel de Misto', quantity: 7 },
-      { id: '5', title: 'Pastel de Pizza', quantity: 3 },
-    ];
-    return items;
+  //** For now, we will always find a product by its ID because it is mocked on the server. In the future, we need to develop a strategy to handle this.*/
+  public getProductById(id: string): Product {
+    return this.allProducts.find((product) => product.id === id)!;
   }
 }

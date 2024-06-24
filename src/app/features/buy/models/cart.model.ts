@@ -1,3 +1,4 @@
+/** For an productId, informes the quantity in cart. */
 export interface Cart {
-  [id: string]: number;
+  [productId: string]: number;
 }

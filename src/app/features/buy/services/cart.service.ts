@@ -33,9 +33,7 @@ export class CartService {
     map((cart) => {
       const productsResume: ProductsResume[] = [];
       for (const productId of Object.keys(cart)) {
-        const product = this.productService.allProducts.find(
-          (_product) => _product.id === productId
-        )!;
+        const product = this.productService.getProductById(productId);
         productsResume.push({
           id: product.id,
           images: product.images,
