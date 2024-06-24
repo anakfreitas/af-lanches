@@ -1,18 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { DashboardComponent } from './dashboard.component';
 import { ChartsComponent } from './components/charts/charts.component';
-
-
+import { SharedModule } from '../../shared/shared.module';
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 
 @NgModule({
-  declarations: [DashboardComponent, ChartsComponent],
-  imports: [
-    CommonModule,
-    MatSelectModule,
-    MatFormFieldModule
-  ]
+  declarations: [DashboardPageComponent, ChartsComponent],
+  imports: [SharedModule],
 })
-export class DashboardModule { }
+export class DashboardModule {}

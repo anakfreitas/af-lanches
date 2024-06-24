@@ -1,0 +1,32 @@
+<ng-container [formGroup]="form">
+  <mat-form-field appearance="fill" class="app-af-input">
+    <mat-label>
+      {{ title }}
+      <span class="app-af-input__subtitle" *ngIf="subtitle">{{
+        subtitle
+      }}</span>
+    </mat-label>
+    <input
+      [id]="controlName"
+      [formControlName]="controlName"
+      [placeholder]="placeholder ?? title"
+      [maxlength]="maxlength"
+      [inputMode]="type === 'numeric' ? 'numeric' : 'text'"
+      [type]="type === 'email' ? 'email' : 'text'"
+      [readonly]="disabled"
+      [mask]="mask"
+      matInput
+    />
+    <mat-icon
+      *ngIf="
+        form.controls[controlName].touched && form.controls[controlName].invalid
+      "
+      matSuffix
+    >
+      error
+    </mat-icon>
+    <mat-error class="input-error">
+      {{ getErrorText(errors) }}
+    </mat-error>
+  </mat-form-field>
+</ng-container>

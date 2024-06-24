@@ -1,0 +1,52 @@
+<div class="checkout">
+  <div class="cart">
+    <h2>Meu Carrinho</h2>
+    <ng-container *ngIf="((productsResume | async)?.length ?? 0) > 0">
+      <mat-card class="card" *ngFor="let product of productsResume | async">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>
+              <h3>{{ product.title }}</h3>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <span>Valor unitário: {{ product.price | currencyBrl }}</span>
+              <br />
+              <span>
+                Valor total:
+                {{ product.price * product.quantity | currencyBrl }}
+              </span>
+            </mat-card-subtitle>
+            <img mat-card-sm-image [src]="product.images[0]" />
+          </mat-card-title-group>
+        </mat-card-header>
+
+        <mat-card-content class="resume-buttons">
+          <app-product-quantity-buttons
+            (increment)="incrementProduct(product.id)"
+            (decrement)="decrementProduct(product.id)"
+            [quantity]="product.quantity"
+          ></app-product-quantity-buttons>
+          <button
+            (click)="removeProduct(product.id)"
+            mat-flat-button
+            color="primary"
+          >
+            <mat-icon>delete</mat-icon>
+            Remover
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+
+    <ng-container *ngIf="((productsResume | async)?.length ?? -1) === 0">
+      <h1>Carrinho Vazio</h1>
+      <h1>Volte ao início para fazer suas compras :D</h1>
+    </ng-container>
+  </div>
+  <div class="steps">
+    <app-checkout-form
+      [disableFinish]="((productsResume | async)?.length ?? -1) === 0"
+      (onSuccessSubmit)="finalizePurchase($event)"
+    ></app-checkout-form>
+  </div>
+</div>

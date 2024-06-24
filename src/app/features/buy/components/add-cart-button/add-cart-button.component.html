@@ -1,14 +1,9 @@
 <div class="add-cart">
-  <div class="quantity">
-    <button mat-mini-fab color="primary" (click)="decrement()">
-      <mat-icon>remove</mat-icon>
-    </button>
-    <span class="quantity-number">{{ quantity }}</span>
-    <button mat-mini-fab color="primary" (click)="increment()">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-
+  <app-product-quantity-buttons
+    [quantity]="quantity"
+    (increment)="increment()"
+    (decrement)="decrement()"
+  ></app-product-quantity-buttons>
   <button mat-flat-button color="primary" (click)="addToCart()">
     <mat-icon>shopping_cart</mat-icon>
     {{ title }}

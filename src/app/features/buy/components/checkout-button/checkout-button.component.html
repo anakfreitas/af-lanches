@@ -1,6 +1,6 @@
 <p>
   <span class="checkout-button__value">{{ value | currencyBrl }}</span>
-  <button mat-icon-button>
+  <button mat-icon-button (click)="onClick.emit()">
     <mat-icon [ngClass]="{ 'checkout-button__cart-icon--shake': animate }">
       shopping_cart
     </mat-icon>

@@ -1,0 +1,28 @@
+::ng-deep app-af-input .mat-mdc-text-field-wrapper {
+  border-radius: 8px;
+}
+
+.app-af-input {
+  width: 100%;
+  margin-bottom: 0.45rem !important;
+}
+
+@media (max-width: 991px) {
+  .app-af-input {
+    margin-bottom: unset !important;
+  }
+}
+
+.app-af-input mat-icon {
+  color: #ff0000;
+  font-size: 16px;
+  display: initial;
+}
+
+.app-af-input__subtitle {
+  font-size: 12px;
+}
+
+.app-af-input__icon {
+  color: #666666 !important;
+}

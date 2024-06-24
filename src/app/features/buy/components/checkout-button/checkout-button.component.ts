@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-checkout-button',
@@ -8,6 +15,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 export class CheckoutButtonComponent implements OnChanges {
   @Input() quantity = 0;
   @Input() value = 0;
+  @Output() onClick = new EventEmitter();
 
   public animate = false;
 

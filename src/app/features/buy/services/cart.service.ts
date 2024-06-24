@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../models/product.model';
+import { ProductsResume } from '../models/product.model';
 import { BehaviorSubject, map } from 'rxjs';
 import { Cart } from '../models/cart.model';
-import { ProductService } from './product.service';
+import { ProductService } from '../../../core/services/product.service';
 
 const cartKey = 'cart_state';
 
@@ -29,6 +29,24 @@ export class CartService {
       );
     })
   );
+  public productsResume = this.cart.pipe(
+    map((cart) => {
+      const productsResume: ProductsResume[] = [];
+      for (const productId of Object.keys(cart)) {
+        const product = this.productService.allProducts.find(
+          (_product) => _product.id === productId
+        )!;
+        productsResume.push({
+          id: product.id,
+          images: product.images,
+          price: product.price,
+          title: product.title,
+          quantity: cart[productId],
+        });
+      }
+      return productsResume;
+    })
+  );
 
   constructor(private productService: ProductService) {
     this._cart.next(JSON.parse(localStorage.getItem(cartKey) ?? '{}'));
@@ -39,13 +57,37 @@ export class CartService {
     this._cart.next(currentCart);
   }
 
-  addToCart(product: Product, quantity: number) {
+  addToCart(productId: string, quantity: number) {
     const currentCart = this._cart.value;
-    if (!Object.keys(currentCart).includes(product.id)) {
-      currentCart[product.id] = quantity;
+    if (!Object.keys(currentCart).includes(productId)) {
+      currentCart[productId] = quantity;
     } else {
-      currentCart[product.id] += quantity;
+      currentCart[productId] += quantity;
     }
     this.setCart(currentCart);
+  }
+
+  incrementProduct(productId: string) {
+    const currentCart = this._cart.value;
+    currentCart[productId]++;
+    this.setCart(currentCart);
+  }
+
+  decrementProduct(productId: string) {
+    const currentCart = this._cart.value;
+    currentCart[productId]--;
+    if (currentCart[productId] > 0) {
+      this.setCart(currentCart);
+    }
+  }
+
+  removeFromCart(productId: string) {
+    const currentCart = this._cart.value;
+    delete currentCart[productId];
+    this.setCart(currentCart);
+  }
+
+  clearCart() {
+    this.setCart({});
   }
 }

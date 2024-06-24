@@ -1,0 +1,12 @@
+@import "/src/app/core/variables.scss";
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  margin-top: 20px;
+  align-self: flex-start; /* ou align-self: center; para centralizar o botão */
+  background-color: $secondary !important;
+}
