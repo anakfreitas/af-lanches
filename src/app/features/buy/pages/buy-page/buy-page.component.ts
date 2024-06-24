@@ -26,19 +26,23 @@ export class BuyPageComponent {
     private snackbarService: SnackbarService,
     private deviceService: DeviceService
   ) {
-    this.list = this.productService.allProducts;
     this.isMobile =
       this.deviceService.isMobile() || this.deviceService.screenMobile();
+  }
 
-    // const data = {
-    //   productId: '1',
-    //   name: 'Pastel de Carne',
-    // };
-    // const dialogRef = this.dialog.open(ProductNoteComponent, {
-    //   width: '300px',
-    //   height: '150px',
-    //   data: data,
-    // });
+  ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.productService.getAllProducts().subscribe({
+      next: (res) => {
+        this.list = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   openProductDetails(product: Product) {
