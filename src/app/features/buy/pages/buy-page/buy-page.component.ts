@@ -24,11 +24,23 @@ export class BuyPageComponent {
     private snackbarService: SnackbarService,
     private deviceService: DeviceService
   ) {
-    this.productService.allProducts.subscribe(
-      (allProducts) => (this.list = allProducts)
-    );
     this.isMobile =
       this.deviceService.isMobile() || this.deviceService.screenMobile();
+  }
+
+  ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.productService.getAllProducts().subscribe({
+      next: (res) => {
+        this.list = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   openProductDetails(product: Product) {

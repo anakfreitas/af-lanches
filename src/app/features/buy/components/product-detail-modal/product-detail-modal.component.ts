@@ -30,7 +30,19 @@ export class ProductDetailModalComponent implements OnInit {
   ngOnInit(): void {
     this.isMobile =
       this.deviceService.isMobile() || this.deviceService.screenMobile();
-    this.reviews = this.reviewService.getReviews(this.product.id);
+    this.getReviews();
+  }
+
+  public getReviews() {
+    this.reviewService.getReviews(this.product.id).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.reviews = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   @HostListener('window:resize', ['$event'])
