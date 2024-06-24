@@ -17,6 +17,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatBadgeModule} from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [CurrencyBrlPipe, AfInputComponent],
@@ -48,6 +49,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatBadgeModule,
     MatSelectModule,
     MatDialogModule,
+    MatRadioModule,
 
     // Form imports
     ReactiveFormsModule,

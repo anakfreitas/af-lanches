@@ -13,6 +13,7 @@ import { ProductNoteComponent } from './components/reviews/product-note/product-
 import { CurrencyBrlPipe } from '../../shared/pipes/currency-brl.pipe';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { LayoutButtonComponent } from './components/layout-button/layout-button.component';
+import { FilterProductModalComponent } from './components/filter-product-modal/filter-product-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { LayoutButtonComponent } from './components/layout-button/layout-button.
     ProductNoteComponent,
     ProductListComponent,
     LayoutButtonComponent,
+    FilterProductModalComponent,
   ],
   exports: [CheckoutButtonComponent],
   imports: [SharedModule],

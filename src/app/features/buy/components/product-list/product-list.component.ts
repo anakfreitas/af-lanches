@@ -3,6 +3,7 @@ import { Product, ToBuyProduct } from '../../models/product.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CartService } from '../../services/cart.service';
 import { ProductDetailModalComponent } from '../../components/product-detail-modal/product-detail-modal.component';
+import { FilterProductModalComponent } from '../filter-product-modal/filter-product-modal.component';
 
 @Component({
   selector: 'app-product-list',
@@ -37,4 +38,6 @@ export class ProductListComponent {
     dialogConfig.panelClass = 'custom-dialog-container';
     this.dialog.open(ProductDetailModalComponent, dialogConfig);
   }
+
+ 
 }

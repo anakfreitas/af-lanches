@@ -5,7 +5,7 @@
         <mat-icon class="icon"  [ngClass]="{'active': layout === 'list'}" (click)="setLayout('list')">list</mat-icon>
     </div>
     <div class="filter">
-        <button mat-button matBadge="7" [matBadgeHidden]="false" matBadgeSize="small" >
+        <button mat-button matBadge="7" [matBadgeHidden]="false" matBadgeSize="small" (click)="openProductFilter()" >
             Filtrar
         </button>
     </div>

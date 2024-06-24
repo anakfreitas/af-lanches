@@ -1,0 +1,35 @@
+@import "/src/app/core/variables.scss";
+
+.filter-product{
+    padding: 20px;
+}
+
+.radio-list{
+    display: flex;
+    flex-direction: column;
+}
+.button{
+    background-color: $bg-primary;
+    width: 100%;
+    margin-top: 20px;
+
+    &:hover {
+         background-color: #f8a000 !important;
+         transition: 0.5s;
+    }
+}
+
+.mat-mdc-radio-button.mat-accent {
+    --mdc-radio-disabled-selected-icon-color: #000;
+    --mdc-radio-disabled-unselected-icon-color: #000;
+    --mdc-radio-unselected-hover-icon-color: #212121;
+    --mdc-radio-unselected-icon-color: rgba(0, 0, 0, 0.54);
+    --mdc-radio-unselected-pressed-icon-color: rgba(0, 0, 0, 0.54);
+    --mdc-radio-selected-focus-icon-color: #881e3b;
+    --mdc-radio-selected-hover-icon-color: #881e3b;
+    --mdc-radio-selected-icon-color: #881e3b;
+    --mdc-radio-selected-pressed-icon-color: #881e3b;
+    --mat-radio-ripple-color: #000;
+    --mat-radio-checked-ripple-color: #881e3b;
+    --mat-radio-disabled-label-color: rgba(0, 0, 0, 0.38);
+}
