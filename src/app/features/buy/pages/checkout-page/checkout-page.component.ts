@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PurchaseInfos } from '../../models/purchase.model';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../../../core/services/product.service';
 import { CartService } from '../../services/cart.service';
 import { ProductsResume, Product } from '../../models/product.model';
 import { BehaviorSubject, Observable } from 'rxjs';

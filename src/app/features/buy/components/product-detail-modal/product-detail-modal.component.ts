@@ -11,8 +11,6 @@ import { ReviewService } from '../../../../core/services/review.service';
   styleUrls: ['./product-detail-modal.component.scss'],
 })
 export class ProductDetailModalComponent implements OnInit {
-  private mobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
   product: ToBuyProduct;
 
   public currentIndex = 0;

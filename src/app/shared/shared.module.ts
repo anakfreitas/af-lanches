@@ -13,6 +13,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { AfInputComponent } from './components/af-input/af-input.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [CurrencyBrlPipe, AfInputComponent],
@@ -39,6 +41,8 @@ import { NgxMaskModule } from 'ngx-mask';
     MatFormFieldModule,
     MatListModule,
     MatCardModule,
+    MatSelectModule,
+    MatDialogModule,
 
     // Form imports
     ReactiveFormsModule,
