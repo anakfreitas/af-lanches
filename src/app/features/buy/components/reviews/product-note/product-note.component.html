@@ -1,0 +1,14 @@
+<div class="product-note-container">
+  <h1 class="title">Avaliar Produto</h1>
+<div class="content">
+  <div class="stars">
+    <span *ngFor="let star of [1, 2, 3, 4, 5]" (click)="setRating(star)">
+      <mat-icon>{{ star <= rating ? "star" : "star_border" }}</mat-icon>
+    </span>
+  </div>
+</div>
+<div class="bnt-actions">
+  <button mat-button (click)="closeDialog()">Cancelar</button>
+  <button mat-button (click)="submitRating()" cdkFocusInitial class="submit" >Avaliar</button>
+</div>
+</div>
