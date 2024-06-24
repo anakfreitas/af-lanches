@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import Chart, { ChartConfiguration, registerables } from 'chart.js/auto';
-import { ReviewService } from '../../../../core/services/review.service';
+import Chart, {
+  ChartConfiguration,
+  ChartType,
+  registerables,
+} from 'chart.js/auto';
 import { ProductService } from '../../../../core/services/product.service';
 import { DashboardService } from '../../services/dashboard.service';
+
 interface Option {
   label: string;
   value: number;
@@ -15,80 +19,45 @@ Chart.register(...registerables);
   styleUrls: ['./dashboard-page.component.scss'],
 })
 export class DashboardPageComponent {
-  chart!: Chart;
+  chart!: Chart<ChartType, any>;
 
   options: Option[] = [
     {
       label: 'Mais vendidos',
-      value: 1,
+      value: 0,
     },
     {
-      label: 'Mais avaliados',
-      value: 2,
+      label: 'Avaliações',
+      value: 1,
     },
   ];
 
   public selectedOption!: Option;
 
   constructor(
-    private reviewService: ReviewService,
     private productService: ProductService,
     private dashboardService: DashboardService
   ) {}
 
   ngOnInit(): void {
-    (this.selectedOption = {
-      label: 'Mais vendidos',
-      value: 1,
-    }),
-      this.initReviewsChart();
+    this.selectedOption = this.options[0];
+    this.setSalesChart();
   }
 
   public changeOption(value: Option) {
     this.chart.destroy();
-    if (value.value === 1) {
-      this.initReviewsChart();
-    } else {
-      this.initSalessChart();
+    this.selectedOption = value;
+    switch (value.value) {
+      case 0:
+        this.setSalesChart();
+        break;
+      case 1:
+        this.setReviewsChart();
+        break;
     }
   }
 
-  private initReviewsChart() {
-    const averageRatings = this.reviewService.getAverageRatings();
-    const labels = averageRatings.map(
-      (ar) => this.productService.getProductById(ar.productId).title
-    );
-    const data = averageRatings.map((ar) => ar.averageRating);
-
-    const chartConfig: ChartConfiguration = {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Classificação média',
-            data: data,
-            backgroundColor: 'rgba(52, 192, 235, 0.2)',
-            borderColor: 'rgba(52, 192, 235, 1)',
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    };
-
-    this.chart = new Chart('canvas', chartConfig);
-  }
-
-  private initSalessChart() {
+  private setSalesChart() {
     const items = this.dashboardService.getTopSellingProducts();
     const labels = items.map(
       (product) => this.productService.getProductById(product.id).title
@@ -124,6 +93,62 @@ export class DashboardPageComponent {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+      },
+    };
+
+    this.chart = new Chart('canvas', chartConfig);
+  }
+
+  private setReviewsChart() {
+    const data = this.dashboardService.getRatings().map((ratings) => ({
+      ...ratings,
+      x: this.productService.getProductById(ratings.id).title,
+    }));
+    const labels = data.map((ratings) => ratings.x);
+    const chartConfig: ChartConfiguration<
+      ChartType,
+      { '1': number; '2': number; '3': number; '4': number; '5': number }[]
+    > = {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: '1 estrela',
+            data: data,
+            parsing: {
+              yAxisKey: '1',
+            },
+          },
+          {
+            label: '2 estrelas',
+            data: data,
+            parsing: {
+              yAxisKey: '2',
+            },
+          },
+          {
+            label: '3 estrelas',
+            data: data,
+            parsing: {
+              yAxisKey: '3',
+            },
+          },
+          {
+            label: '4 estrelas',
+            data: data,
+            parsing: {
+              yAxisKey: '4',
+            },
+          },
+          {
+            label: '5 estrelas',
+            data: data,
+            parsing: {
+              yAxisKey: '5',
+            },
+          },
+        ],
       },
     };
 

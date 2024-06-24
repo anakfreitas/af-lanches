@@ -2,14 +2,18 @@
   <h1>Estatísticas</h1>
   <mat-form-field class="select-option">
     <mat-label>Selecione o típo de estatística</mat-label>
-    <mat-select disableRipple (valueChange)="changeOption($event)">
-      <mat-option *ngFor="let option of options" [value]="option">{{
-        option.label
-      }}</mat-option>
+    <mat-select
+      disableRipple
+      (valueChange)="changeOption($event)"
+      [value]="selectedOption"
+    >
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{ option.label }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
   <app-charts
-    [title]="'Média das avaliações dos produtos'"
+    [title]="selectedOption.label"
     [chart]="chart"
     class="chart"
   ></app-charts>

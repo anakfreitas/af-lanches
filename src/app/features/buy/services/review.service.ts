@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Review } from '../../core/models/reviews.model';
+import { Review } from '../../../core/models/reviews.model';
 import { v4 as uuidv4 } from 'uuid';
 import { HttpClient } from '@angular/common/http';
-import { apiUrl } from '../../../env/dev.env';
+import { apiUrl } from '../../../../env/dev.env';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
@@ -67,23 +67,5 @@ export class ReviewService {
         return '';
       }
     }
-  }
-
-  /**
-   * Obtém a média das classificações
-   */
-  getAverageRatings(): { productId: string, averageRating: number }[] {
-    const allReviews = localStorage.getItem(this.localStorageKey);
-    const reviews = allReviews ? JSON.parse(allReviews) : {};
-    const averageRatings = [];
-
-    for (const productId in reviews) {
-      const productReviews = reviews[productId];
-      const totalRatings = productReviews.reduce((sum: number, review: any) => sum + review.rating, 0);
-      const averageRating = totalRatings / productReviews.length;
-      averageRatings.push({ productId, averageRating });
-    }
-
-    return averageRatings;
   }
 }

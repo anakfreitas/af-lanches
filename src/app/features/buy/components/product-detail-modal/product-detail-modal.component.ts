@@ -3,7 +3,7 @@ import { Product, ToBuyProduct } from '../../models/product.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DeviceService } from '../../../../core/services/device.service';
 import { Review } from '../../../../core/models/reviews.model';
-import { ReviewService } from '../../../../core/services/review.service';
+import { ReviewService } from '../../services/review.service';
 
 @Component({
   selector: 'app-product-detail-modal',
