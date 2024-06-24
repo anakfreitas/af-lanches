@@ -34,7 +34,7 @@ export class ProductNoteComponent {
 
     this.reviewService.saveReview(review).subscribe({
       next: () => {
-        this.dialogRef.close(this.rating);
+        this.dialogRef.close(true);
       },
       error: (err) => {
         console.log(err);

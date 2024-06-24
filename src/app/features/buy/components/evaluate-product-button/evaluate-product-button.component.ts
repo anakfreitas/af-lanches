@@ -26,8 +26,10 @@ export class EvaluateProductButtonComponent {
       data: data,
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.snackbarService.open('Produto avaliado com sucesso!')
+    dialogRef.afterClosed().subscribe((success) => {
+      if(success){
+        this.snackbarService.open('Produto avaliado com sucesso!')
+      }
     })
   }
 }
