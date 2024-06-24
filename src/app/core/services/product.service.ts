@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, filter } from 'rxjs';
 import { Product } from '../../features/buy/models/product.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private _allProducts: BehaviorSubject<Product[]> = new BehaviorSubject(
-    [] as Product[]
+  private _allProducts: BehaviorSubject<Product[] | null> = new BehaviorSubject(
+    null as Product[] | null
   );
 
   constructor() {
@@ -64,10 +64,14 @@ export class ProductService {
     );
   }
 
-  //** For now, we will always find a product by its ID because it is mocked on the server. In the future, we need to develop a strategy to handle this.*/
+  /** The hydrateCart function ensures that a product will always be found. */
   public getProductById(id: string): Product {
-    return this._allProducts.value.find((product) => product.id === id)!;
+    return this._allProducts.value!.find((product) => product.id === id)!;
   }
 
-  public allProducts = this._allProducts.asObservable();
+  public allProducts = this._allProducts
+    .asObservable()
+    .pipe(filter((allProducts) => allProducts !== null)) as Observable<
+    Product[]
+  >;
 }
