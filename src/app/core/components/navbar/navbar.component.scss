@@ -1,7 +1,23 @@
+@import "/src/app/core/variables.scss";
+
 .navbar{
-    padding: 1% 10%;
+    padding: 0% 10%;
+    background-color: $bg-secondary ;
+    margin-bottom: 30px;
 }
 
 button{
-    font-size: 16px;
+    font-size: 13px;
+}
+button:hover{
+    background-color: $bg-terciary;
+    transition: 0.5s;
+    ::ng-deep .mdc-button__label{
+        color: $font-accent;
+    }
+}
+
+::ng-deep .mdc-button__label{
+    color: white;
+    font-size: 13px;
 }
