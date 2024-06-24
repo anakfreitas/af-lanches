@@ -1,22 +1,14 @@
-<section>
-  <div class="button-row">
-    <mat-icon
-      class="icon"
-      [ngClass]="{ active: layout === 'grid' }"
-      (click)="setLayout('grid')"
-      >view_module</mat-icon
-    >
-    <mat-icon
-      class="icon"
-      [ngClass]="{ active: layout === 'card' }"
-      (click)="setLayout('card')"
-      >border_all</mat-icon
-    >
-    <mat-icon
-      class="icon"
-      [ngClass]="{ active: layout === 'list' }"
-      (click)="setLayout('list')"
-      >list</mat-icon
-    >
-  </div>
+<section class="layout-button">
+    <div class="button-row">
+        <mat-icon class="icon"  [ngClass]="{'active': layout === 'grid'}" (click)="setLayout('grid')">view_module</mat-icon>
+        <mat-icon class="icon"  [ngClass]="{'active': layout === 'card'}" (click)="setLayout('card')">border_all</mat-icon>
+        <mat-icon class="icon"  [ngClass]="{'active': layout === 'list'}" (click)="setLayout('list')">list</mat-icon>
+    </div>
+    <div class="filter">
+        <button mat-button matBadge="7" [matBadgeHidden]="false" matBadgeSize="small" (click)="openProductFilter()" >
+            Filtrar
+        </button>
+    </div>
+
+
 </section>
