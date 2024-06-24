@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalStorageService {
   private storageSubject = new Subject<string>();
@@ -17,8 +17,8 @@ export class LocalStorageService {
   }
 
   getItem(key: string) {
-     if (localStorage.getItem(key) === null) {
-      localStorage.setItem(key, 'grid')
+    if (localStorage.getItem(key) === null) {
+      localStorage.setItem(key, 'grid');
     }
     return localStorage.getItem(key);
   }

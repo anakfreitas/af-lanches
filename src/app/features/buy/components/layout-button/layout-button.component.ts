@@ -6,11 +6,11 @@ import { FilterProductModalComponent } from '../filter-product-modal/filter-prod
 @Component({
   selector: 'app-layout-button',
   templateUrl: './layout-button.component.html',
-  styleUrls: ['./layout-button.component.scss']
+  styleUrls: ['./layout-button.component.scss'],
 })
 export class LayoutButtonComponent {
-
   @Input() layout: any;
+
   public selectedValue: string | undefined;
   public counterFilter: number = 0;
 
