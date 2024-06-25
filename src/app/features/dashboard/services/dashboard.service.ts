@@ -9,7 +9,7 @@ export class DashboardService {
   constructor(private requestService: RequestService) {}
 
   public getSellingProducts() {
-    return this.requestService.get<TopSales[]>('top-items');
+    return this.requestService.get<TopSales[]>('get-sellings-products');
   }
 
   public getRatings() {

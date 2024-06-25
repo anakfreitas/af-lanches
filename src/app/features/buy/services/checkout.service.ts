@@ -72,11 +72,11 @@ export class CheckoutService {
   }
 
   addTopSale(body: TopSales): Observable<TopSales> {
-    return this.requestService.post<TopSales>(`top-items`, body);
+    return this.requestService.post<TopSales>(`get-sellings-products`, body);
   }
 
   updateTopSale(id: string, quantity: number): Observable<TopSales> {
-    return this.requestService.patch<TopSales>(`top-items/${id}`, {
+    return this.requestService.patch<TopSales>(`get-sellings-products/${id}`, {
       quantity,
     });
   }
