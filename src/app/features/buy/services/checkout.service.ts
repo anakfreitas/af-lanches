@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ProductsResume, TopSales } from '../models/product.model';
+import { ProductsResume } from '../models/product.model';
 import { PurchaseInfos } from '../models/purchase.model';
 import { Router } from '@angular/router';
 import { CartService } from './cart.service';
 import { Observable, first, from, mergeMap, switchMap } from 'rxjs';
 import { RequestService } from '../../../core/services/request.service';
 import { DashboardService } from '../../dashboard/services/dashboard.service';
+import { TopSales } from '../../dashboard/models/dashboard.model';
 
 @Injectable({
   providedIn: 'root',
