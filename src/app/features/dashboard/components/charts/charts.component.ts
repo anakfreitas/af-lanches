@@ -7,9 +7,11 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./charts.component.scss'],
 })
 export class ChartsComponent {
-  @Input() chart!: Chart;
-  @Input() idChart: string = 'canvas';
+  @Input() reviewsChart!: Chart;
+  @Input() salesChart!: Chart;
+  @Input() idChart: string = 'review';
   @Input() title: string = '';
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }

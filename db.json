@@ -88,22 +88,22 @@
     {
       "id": "1",
       "title": "Pastel de Carne",
-      "quantity": 4
+      "quantity": 5
     },
     {
       "id": "2",
       "title": "Pastel de Queijo",
-      "quantity": 9
+      "quantity": 10
     },
     {
       "id": "3",
       "title": "Pastel de Frango",
-      "quantity": 4
+      "quantity": 5
     },
     {
       "id": "4",
       "title": "Pastel de Misto",
-      "quantity": 7
+      "quantity": 10
     },
     {
       "id": "5",

@@ -18,6 +18,7 @@ Chart.register(...registerables);
 })
 export class DashboardPageComponent {
   chart!: Chart;
+  reviewsChart!: Chart;
 
   options: Option[] = [
     {
@@ -89,8 +90,7 @@ export class DashboardPageComponent {
         },
       },
     };
-
-    this.chart = new Chart('canvas', chartConfig);
+      this.reviewsChart = new Chart('reviewsChart', chartConfig);
   }
 
   calculateAverageRatings(): ReviewAverage[] {

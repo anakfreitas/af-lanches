@@ -1,16 +1,41 @@
-<div class="main">
+<section>
   <h1>Estatísticas</h1>
-  <mat-form-field class="select-option">
-    <mat-label>Selecione o típo de estatística</mat-label>
-    <mat-select disableRipple (valueChange)="changeOption($event)">
-      <mat-option *ngFor="let option of options" [value]="option">{{
-        option.label
-      }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <app-charts
-    [title]="'Média das avaliações dos produtos'"
-    [chart]="chart"
-    class="chart"
-  ></app-charts>
-</div>
+  <div class="main">
+
+    <!-- <mat-form-field class="select-option">
+      <mat-label>Selecione o típo de estatística</mat-label>
+      <mat-select disableRipple (valueChange)="changeOption($event)">
+        <mat-option *ngFor="let option of options" [value]="option">{{
+          option.label
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field> -->
+    <div class="mais-vendidos">
+      <h2>Mais Vendidos</h2>
+      <mat-card>
+      <mat-card-content>
+        <app-charts
+        [salesChart]="chart"
+        class="chart"
+      ></app-charts>
+      </mat-card-content>
+    </mat-card>
+
+ 
+    </div>
+    <div class="mais-avaliados">
+      <h2>Mais Avaliados</h2>
+      <mat-card>
+        <mat-card-content>
+          <app-charts
+          [reviewsChart]="reviewsChart"
+          idChart="review"
+          class="chart"
+        ></app-charts>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+  </div>
+</section>
+
