@@ -17,6 +17,9 @@
   gap: 18px;
   animation-name: fade;
   animation-duration: 2s;
+  .grid-item{
+    width: 200px;
+  }
 }
 
 .card {

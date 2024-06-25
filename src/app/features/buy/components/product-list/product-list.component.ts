@@ -1,4 +1,4 @@
-import { Component, Injectable, Input } from '@angular/core';
+import { Component, HostListener, Injectable, Input, OnInit } from '@angular/core';
 import { Product, ToBuyProduct } from '../../models/product.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CartService } from '../../services/cart.service';
@@ -6,8 +6,8 @@ import { ProductDetailModalComponent } from '../../components/product-detail-mod
 import { DeviceService } from '../../../../core/services/device.service';
 import { SnackbarService } from '../../../../core/services/snackbar.service';
 import { CurrencyBrlPipe } from '../../../../shared/pipes/currency-brl.pipe';
-import {MatPaginatorIntl} from '@angular/material/paginator';
-import {Subject} from 'rxjs';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class MyCustomPaginatorIntl implements MatPaginatorIntl {
@@ -32,12 +32,14 @@ export class MyCustomPaginatorIntl implements MatPaginatorIntl {
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
-  providers: [{provide: MatPaginatorIntl, useClass: MyCustomPaginatorIntl}],
+  providers: [{ provide: MatPaginatorIntl, useClass: MyCustomPaginatorIntl }],
 })
-export class ProductListComponent {
-  @Input() products: any;
+export class ProductListComponent implements OnInit {
+  @HostListener('search', ['$event'])
+  @Input() allProducts: any;
   @Input() layout: any;
   public isMobile: boolean = false;
+  public products: any;
 
   constructor(
     private dialog: MatDialog,
@@ -47,6 +49,10 @@ export class ProductListComponent {
   ) {
     this.isMobile =
       this.deviceService.isMobile() || this.deviceService.screenMobile();
+  }
+
+  ngOnInit() {
+    this.products = this.allProducts
   }
 
   openProductDetails(product: Product) {
@@ -63,11 +69,11 @@ export class ProductListComponent {
         const s = quantity > 1 ? 's' : '';
         this.snackbarService.open(
           'Produto' +
-            s +
-            ' adicionado' +
-            s +
-            ' por ' +
-            new CurrencyBrlPipe().transform(quantity * product.price),
+          s +
+          ' adicionado' +
+          s +
+          ' por ' +
+          new CurrencyBrlPipe().transform(quantity * product.price),
           {
             icon: 'check',
             type: 'success',
@@ -77,6 +83,19 @@ export class ProductListComponent {
     } as ToBuyProduct;
     dialogConfig.panelClass = 'custom-dialog-container';
     this.dialog.open(ProductDetailModalComponent, dialogConfig);
+  }
+
+
+  searchProduct(search: string) {
+    if (search !== '') {
+      if (search !== '') {
+        this.products = this.allProducts.filter((item: any) => {
+          return item.title.toLowerCase().includes(search.toLowerCase());
+        });
+      } else {
+        this.products = [...this.allProducts];
+      }
+    }
   }
 
 
