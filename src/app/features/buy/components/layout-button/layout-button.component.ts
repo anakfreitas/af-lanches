@@ -9,7 +9,9 @@ import { FilterProductModalComponent } from '../filter-product-modal/filter-prod
   styleUrls: ['./layout-button.component.scss'],
 })
 export class LayoutButtonComponent {
+  @Output() search = new EventEmitter<any>();
   @Input() layout: any;
+  public searchQuery: string = '';
 
   @Output() filter: EventEmitter<string> = new EventEmitter();
 
@@ -39,5 +41,9 @@ export class LayoutButtonComponent {
         this.filter.emit(value);
       }
     });
+  }
+
+  searchProduct(){
+    this.search.emit(this.searchQuery);
   }
 }

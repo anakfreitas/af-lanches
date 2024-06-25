@@ -1,9 +1,6 @@
 <section class="header-product-list">
   <h1>Nossos produtos</h1>
-  <app-layout-button
-    [layout]="layout"
-    (filter)="filterList($event)"
-  ></app-layout-button>
+  <app-layout-button [layout]="layout" (search)="searchProduct($event)" (filter)="filterList($event)"></app-layout-button>
 </section>
 <section class="product-list">
   <h2>Pastéis</h2>
@@ -74,4 +71,8 @@
       </mat-list-item>
     </mat-list>
   </div>
+</section>
+<section class="paginator">
+  <mat-paginator [length]="200" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
+  </mat-paginator>
 </section>

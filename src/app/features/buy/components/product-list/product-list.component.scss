@@ -17,6 +17,9 @@
   gap: 18px;
   animation-name: fade;
   animation-duration: 2s;
+  .grid-item{
+    width: 200px;
+  }
 }
 
 .card {
@@ -57,6 +60,10 @@ button {
 
 mat-list-item {
   border-bottom: 1px solid $font-accent;
+}
+
+.paginator{
+  padding: 0% 10%;
 }
 
 @keyframes fade {
