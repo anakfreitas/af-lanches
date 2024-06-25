@@ -16,7 +16,7 @@ export class LayoutButtonComponent {
   @Output() filter: EventEmitter<string> = new EventEmitter();
 
   public selectedValue: string | undefined;
-  public counterFilter: number = 0;
+  public counterFilter: boolean = true;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -39,7 +39,12 @@ export class LayoutButtonComponent {
     dialogRef.afterClosed().subscribe((value) => {
       if (value) {
         this.filter.emit(value);
+        this.counterFilter = false;
+      }else{
+        this.counterFilter = true;
+        
       }
+  
     });
   }
 
