@@ -18,7 +18,6 @@ Chart.register(...registerables);
 })
 export class DashboardPageComponent {
   chart!: Chart;
-  reviewsChart!: Chart;
 
   options: Option[] = [
     {
@@ -32,6 +31,7 @@ export class DashboardPageComponent {
   ];
 
   public selectedOption!: Option;
+  public label: string | undefined;
 
   public reviews: Review[] = [];
 
@@ -46,6 +46,7 @@ export class DashboardPageComponent {
       label: 'Mais vendidos',
       value: 1,
     };
+    this.label = this.selectedOption.label;
     this.reviewService.getReviews().subscribe((reviews) => {
       this.reviews = reviews;
       this.initReviewsChart();
@@ -55,8 +56,10 @@ export class DashboardPageComponent {
   public changeOption(value: Option) {
     this.chart.destroy();
     if (value.value === 1) {
+      this.label = value.label;
       this.initReviewsChart();
     } else {
+      this.label = value.label;
       this.initSalessChart();
     }
   }
@@ -90,7 +93,7 @@ export class DashboardPageComponent {
         },
       },
     };
-      this.reviewsChart = new Chart('reviewsChart', chartConfig);
+      this.chart = new Chart('canvas', chartConfig);
   }
 
   calculateAverageRatings(): ReviewAverage[] {

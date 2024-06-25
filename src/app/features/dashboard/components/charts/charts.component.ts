@@ -7,8 +7,7 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./charts.component.scss'],
 })
 export class ChartsComponent {
-  @Input() reviewsChart!: Chart;
-  @Input() salesChart!: Chart;
+  @Input() chart!: Chart;
   @Input() idChart: string = 'review';
   @Input() title: string = '';
 
