@@ -115,27 +115,27 @@
     {
       "id": "1",
       "title": "Pastel de Carne",
-      "quantity": 5
+      "quantity": 8
     },
     {
       "id": "2",
       "title": "Pastel de Queijo",
-      "quantity": 10
+      "quantity": 11
     },
     {
       "id": "3",
       "title": "Pastel de Frango",
-      "quantity": 5
+      "quantity": 6
     },
     {
       "id": "4",
       "title": "Pastel de Misto",
-      "quantity": 10
+      "quantity": 11
     },
     {
       "id": "5",
       "title": "Pastel de Pizza",
-      "quantity": 3
+      "quantity": 4
     }
   ]
 }
