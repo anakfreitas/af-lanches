@@ -67,4 +67,9 @@ export class ProductDetailModalComponent implements OnInit {
   closeModal() {
     this.dialogRef.close();
   }
+
+  shareProductViaWhatsApp(product: any) {
+    const url = `https://wa.me/?text=${encodeURIComponent(`Confira este produto: ${product.title} por ${product.price} `)}`;
+    window.open(url, '_blank');
+  }
 }

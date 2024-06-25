@@ -24,7 +24,7 @@
         [lensWidth]="200"
         [lensHeight]="200"
       ></lib-ngx-image-zoom>
-      <div class="buttons-mobile" *ngIf="isMobile">
+        <div class="buttons-mobile" *ngIf="isMobile">
         <button mat-icon-button (click)="prevImage()" class="prevBtn">
           <mat-icon>chevron_left</mat-icon>
         </button>
@@ -51,6 +51,11 @@
       <div class="evaluate-btn">
         <app-evaluate-product-button [product]="product" />
       </div>
+      <div>
+        <button class="wp" (click)="shareProductViaWhatsApp(product)" mat-raised-button>
+          <span > Compartilhar no WhatsApp</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -59,4 +64,4 @@
     <app-reviews *ngFor="let review of reviews" [review]="review">
     </app-reviews>
   </div>
-</div>
+  </div>

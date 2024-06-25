@@ -66,7 +66,7 @@ export class ProductListComponent implements OnInit, OnChanges {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '850px';
     dialogConfig.maxWidth = '90vw';
-    dialogConfig.maxHeight = this.isMobile ? '90vh' : '100%';
+    dialogConfig.maxHeight = this.isMobile ? '90vh' : '90vh';
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
       ...product,
@@ -110,6 +110,7 @@ export class ProductListComponent implements OnInit, OnChanges {
         this.products = [...this.allProducts];
       }
   }
+
 
 
 }
