@@ -42,18 +42,21 @@
       </button>
     </div>
 
-    <div class="add-cart">
-      <p>{{ product.price | currencyBrl }}</p>
+    <div class="container-left">
+      <div class="add-cart">
+        <p>{{ product.price | currencyBrl }}</p>
+        <app-add-cart-button [product]="product" />
+      </div>
 
-      <app-add-cart-button [product]="product" />
+      <div class="evaluate-btn">
+        <app-evaluate-product-button [product]="product" />
+      </div>
     </div>
   </div>
 
-  <div class="reviews" *ngIf=" reviews && reviews.length > 0">
+  <div class="reviews" *ngIf="reviews && reviews.length > 0">
     <p>Avaliações</p>
-    <app-reviews
-      *ngFor="let review of reviews"
-      [review]="review">
+    <app-reviews *ngFor="let review of reviews" [review]="review">
     </app-reviews>
   </div>
 </div>

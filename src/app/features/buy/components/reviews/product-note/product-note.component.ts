@@ -30,11 +30,16 @@ export class ProductNoteComponent {
     const review: Review = {
       ...this.data,
       rating: this.rating,
-      productName: this.data.title || '',
     };
 
-    this.reviewService.saveReview(review);
-    this.dialogRef.close(this.rating);
+    this.reviewService.saveReview(review).subscribe({
+      next: () => {
+        this.dialogRef.close(true);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   closeDialog(): void {

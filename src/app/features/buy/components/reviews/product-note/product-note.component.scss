@@ -19,11 +19,17 @@
   }
 
   .bnt-actions {
+    display: flex;
+    gap: 8px;
     margin-top: 10px;
 
     .submit {
       background-color: $bg-secondary !important;
       color: #fff;
+    }
+
+    .cancel {
+      background-color: #d3d3d3;
     }
   }
 }

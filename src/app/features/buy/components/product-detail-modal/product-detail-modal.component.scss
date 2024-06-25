@@ -36,6 +36,12 @@
     align-items: center;
   }
 
+  .container-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .add-cart {
     display: flex;
     flex-direction: column;
@@ -51,6 +57,10 @@
     button {
       background-color: $bg-secondary !important;
     }
+  }
+
+  .evaluate-btn {
+    margin-top: 30px;
   }
 }
 

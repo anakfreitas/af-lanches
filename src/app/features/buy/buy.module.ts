@@ -14,6 +14,7 @@ import { CurrencyBrlPipe } from '../../shared/pipes/currency-brl.pipe';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { LayoutButtonComponent } from './components/layout-button/layout-button.component';
 import { FilterProductModalComponent } from './components/filter-product-modal/filter-product-modal.component';
+import { EvaluateProductButtonComponent } from './components/evaluate-product-button/evaluate-product-button.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FilterProductModalComponent } from './components/filter-product-modal/f
     ProductListComponent,
     LayoutButtonComponent,
     FilterProductModalComponent,
+    EvaluateProductButtonComponent,
   ],
   exports: [CheckoutButtonComponent],
   imports: [SharedModule],
