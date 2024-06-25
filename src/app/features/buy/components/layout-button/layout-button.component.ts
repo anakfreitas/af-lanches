@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { FilterProductModalComponent } from '../filter-product-modal/filter-product-modal.component';
@@ -11,13 +11,15 @@ import { FilterProductModalComponent } from '../filter-product-modal/filter-prod
 export class LayoutButtonComponent {
   @Input() layout: any;
 
+  @Output() filter: EventEmitter<string> = new EventEmitter();
+
   public selectedValue: string | undefined;
   public counterFilter: number = 0;
 
   constructor(
     private localStorageService: LocalStorageService,
-    private dialog: MatDialog,
-  ) { }
+    private dialog: MatDialog
+  ) {}
 
   setLayout(type: string) {
     this.localStorageService.setItem('layoutList', type);
@@ -27,6 +29,15 @@ export class LayoutButtonComponent {
     dialogConfig.width = '300px';
     dialogConfig.maxWidth = '90vw';
     dialogConfig.autoFocus = true;
-    this.dialog.open(FilterProductModalComponent, dialogConfig);
+    const dialogRef = this.dialog.open(
+      FilterProductModalComponent,
+      dialogConfig
+    );
+
+    dialogRef.afterClosed().subscribe((value) => {
+      if (value) {
+        this.filter.emit(value);
+      }
+    });
   }
 }

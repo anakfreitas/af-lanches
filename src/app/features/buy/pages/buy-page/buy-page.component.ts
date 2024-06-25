@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../../../core/services/product.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { DashboardService } from '../../../dashboard/services/dashboard.service';
 
 @Component({
   selector: 'app-buy-page',
@@ -21,19 +22,12 @@ export class BuyPageComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private dashBoardService: DashboardService
   ) {}
 
   ngOnInit(): void {
-    this.productService.getAllProducts().subscribe({
-      next: (res) => {
-        this.list = res;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-
+    this.getList();
     this.layoutList = this.localStorageService.getItem('layoutList');
 
     this.storageSubscription = this.localStorageService
@@ -52,5 +46,35 @@ export class BuyPageComponent implements OnInit {
       this.storageSubscription.unsubscribe();
     }
     window.removeEventListener('storage', this.storageEventListener);
+  }
+
+  getList() {
+    this.productService.getAllProducts().subscribe({
+      next: (res) => {
+        this.list = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  filterList(value: string) {
+    switch (value) {
+      case 'lowest-price': {
+        this.list = this.productService.filterByLowestPrice(this.list);
+        break;
+      }
+      case 'best-sellers': {
+        this.dashBoardService.getTopSellingProducts().subscribe({
+          next: (items) => {
+            this.list = this.productService.bestSellers(this.list, items)
+          },
+        });
+        break;
+      }
+      default:
+        this.getList();
+    }
   }
 }

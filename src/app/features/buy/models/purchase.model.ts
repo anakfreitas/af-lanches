@@ -11,9 +11,3 @@ export interface PurchaseInfos {
   cardExpiry: string;
   cardCvv: string;
 }
-
-export interface TopSales {
-  id: string;
-  title: string;
-  quantity: number;
-}

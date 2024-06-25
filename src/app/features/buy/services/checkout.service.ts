@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ProductsResume } from '../models/product.model';
-import { PurchaseInfos, TopSales } from '../models/purchase.model';
+import { ProductsResume, TopSales } from '../models/product.model';
+import { PurchaseInfos } from '../models/purchase.model';
 import { Router } from '@angular/router';
 import { CartService } from './cart.service';
 import {
@@ -71,7 +71,7 @@ export class CheckoutService {
                   item.quantity + resume.quantity
                 );
               }
-            })
+            }, 3)
           )
         )
       )

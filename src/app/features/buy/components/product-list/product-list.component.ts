@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product, ToBuyProduct } from '../../models/product.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CartService } from '../../services/cart.service';
@@ -15,6 +15,8 @@ import { CurrencyBrlPipe } from '../../../../shared/pipes/currency-brl.pipe';
 export class ProductListComponent {
   @Input() products: any;
   @Input() layout: any;
+
+  @Output() filter: EventEmitter<string> = new EventEmitter();
   public isMobile: boolean = false;
 
   constructor(
@@ -57,5 +59,7 @@ export class ProductListComponent {
     this.dialog.open(ProductDetailModalComponent, dialogConfig);
   }
 
-
+  filterList(value: string) {
+    this.filter.emit(value);
+  }
 }

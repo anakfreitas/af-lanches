@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { apiUrl } from '../../../../env/dev.env';
 import { Observable } from 'rxjs';
+import { TopSales } from '../../buy/models/product.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +14,9 @@ export class DashboardService {
   }
 
   public getTopSellingProducts(): Observable<
-    { id: string; title: string; quantity: number }[]
+  TopSales[]
   > {
-    return this.http.get<{ id: string; title: string; quantity: number }[]>(
+    return this.http.get<TopSales[]>(
       `${this.apiUrl}/top-items`
     );
   }

@@ -12,3 +12,9 @@ export interface ProductsResume extends Product {
 export interface ToBuyProduct extends Product {
   buyAction: (quantity: number) => void;
 }
+
+export interface TopSales {
+  id: string;
+  title: string;
+  quantity: number;
+}
