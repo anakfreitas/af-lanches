@@ -2,7 +2,7 @@
   <h1>Nossos produtos</h1>
   <app-layout-button [layout]="layout" (search)="searchProduct($event)" (filter)="filterList($event)"></app-layout-button>
 </section>
-<section class="product-list">
+<section class="product-list"*ngIf="!message">
   <h2>Pastéis</h2>
   <div class="grid-list" *ngIf="layout === 'grid'">
     <mat-card
