@@ -2,7 +2,7 @@
   <button mat-button class="close" color="warn" (click)="closeModal()">
     <mat-icon>close</mat-icon>
   </button>
-  <h2>Filtrar por:</h2>
+  <h2>Ordernar por:</h2>
   <section>
     <mat-radio-group [(ngModel)]="labelPosition" class="radio-list">
       <mat-radio-button value="best-sellers">Mais vendidos</mat-radio-button>
@@ -12,6 +12,6 @@
 
   <div class="btn-actions">
     <button mat-button class="button btn-clear" (click)="clear()">Limpar</button>
-    <button mat-button class="button" (click)="submit()">Filtrar</button>
+    <button mat-button class="button" (click)="submit()">Ordernar</button>
   </div>
 </section>
