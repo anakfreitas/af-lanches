@@ -15,7 +15,7 @@
     </div>
     <div class="search">
         <mat-form-field  class="search small-input">
-            <input matInput placeholder="Buscar produto"  [(ngModel)]="searchQuery" />
+            <input matInput placeholder="Buscar produto"   [(ngModel)]="searchQuery"   (keydown.enter)="onKeydown()"/>
             <mat-icon matSuffix (click)="searchProduct()">search</mat-icon>
         </mat-form-field>
     </div>

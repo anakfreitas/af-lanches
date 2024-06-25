@@ -51,4 +51,8 @@ export class LayoutButtonComponent {
   searchProduct(){
     this.search.emit(this.searchQuery);
   }
+
+  onKeydown() {
+      this.searchProduct();
+  }
 }
