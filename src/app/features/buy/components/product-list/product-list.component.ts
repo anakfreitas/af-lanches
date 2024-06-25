@@ -40,6 +40,7 @@ export class ProductListComponent implements OnInit {
   @Input() layout: any;
   public isMobile: boolean = false;
   public products: any;
+  public message: boolean = false;
 
   constructor(
     private dialog: MatDialog,
@@ -87,15 +88,18 @@ export class ProductListComponent implements OnInit {
 
 
   searchProduct(search: string) {
-    if (search !== '') {
       if (search !== '') {
         this.products = this.allProducts.filter((item: any) => {
+          this.message = false;
           return item.title.toLowerCase().includes(search.toLowerCase());
         });
+        if(JSON.stringify(this.products) === '[]'){
+          this.message = true;
+        }
       } else {
+        this.message = false;
         this.products = [...this.allProducts];
       }
-    }
   }
 
 
