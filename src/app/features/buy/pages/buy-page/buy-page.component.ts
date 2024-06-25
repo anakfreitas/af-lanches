@@ -27,7 +27,8 @@ export class BuyPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getList();
+    this.getList()
+
     this.layoutList = this.localStorageService.getItem('layoutList');
 
     this.storageSubscription = this.localStorageService
@@ -49,14 +50,9 @@ export class BuyPageComponent implements OnInit {
   }
 
   getList() {
-    this.productService.getAllProducts().subscribe({
-      next: (res) => {
-        this.list = res;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    this.productService.allProducts.subscribe(
+      (allProducts) => (this.list = allProducts)
+    );
   }
 
   filterList(value: string) {
@@ -66,7 +62,7 @@ export class BuyPageComponent implements OnInit {
         break;
       }
       case 'best-sellers': {
-        this.dashBoardService.getTopSellingProducts().subscribe({
+        this.dashBoardService.getSellingProducts().subscribe({
           next: (items) => {
             this.list = this.productService.bestSellers(this.list, items)
           },

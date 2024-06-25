@@ -3,36 +3,23 @@ import { ProductsResume, TopSales } from '../models/product.model';
 import { PurchaseInfos } from '../models/purchase.model';
 import { Router } from '@angular/router';
 import { CartService } from './cart.service';
-import {
-  Observable,
-  concatMap,
-  first,
-  from,
-  map,
-  mergeMap,
-  switchMap,
-} from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { apiUrl } from '../../../../env/dev.env';
+import { Observable, first, from, mergeMap, switchMap } from 'rxjs';
+import { RequestService } from '../../../core/services/request.service';
 import { DashboardService } from '../../dashboard/services/dashboard.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CheckoutService {
-  private apiUrl: string = '';
-
   public lastProductsResume?: ProductsResume[];
   public lastPurchaseInfos?: PurchaseInfos;
 
   constructor(
     private router: Router,
     private cartService: CartService,
-    private http: HttpClient,
-    private dashboard: DashboardService
-  ) {
-    this.apiUrl = apiUrl;
-  }
+    private requestService: RequestService,
+    private dashboardService: DashboardService
+  ) {}
 
   finishSale(purchaseInfos: PurchaseInfos) {
     this.cartService.productsResume
@@ -51,8 +38,8 @@ export class CheckoutService {
    * Incrementa a quantidade de itens compradas
    */
   increaseSales(productsResume: ProductsResume[]): void {
-    this.dashboard
-      .getTopSellingProducts()
+    this.dashboardService
+      .getSellingProducts()
       .pipe(
         switchMap((res) =>
           from(productsResume).pipe(
@@ -84,11 +71,11 @@ export class CheckoutService {
   }
 
   addTopSale(body: TopSales): Observable<TopSales> {
-    return this.http.post<TopSales>(`${this.apiUrl}/top-items`, body);
+    return this.requestService.post<TopSales>(`top-items`, body);
   }
 
   updateTopSale(id: string, quantity: number): Observable<TopSales> {
-    return this.http.patch<TopSales>(`${this.apiUrl}/top-items/${id}`, {
+    return this.requestService.patch<TopSales>(`top-items/${id}`, {
       quantity,
     });
   }

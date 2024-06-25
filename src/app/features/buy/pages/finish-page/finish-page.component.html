@@ -1,6 +1,54 @@
-<div>
-  <p>Parabéns! Você finalizou sua compra: aqui estão seus dados:</p>
-  <p>{{ lastPurchaseInfos | json }}</p>
-  <p>E os dados da sua compra:</p>
-  <p>{{ lastProductsResume | json }}</p>
-</div>
+<section class="finish">
+  <div class="congragulations">
+    <img src="../../../../../assets/img/chef.png" width="200px" alt="foto chefe" />
+
+    <h1>Parabéns!</h1>
+    <h2>Você finalizou sua compra.</h2>
+
+  </div>
+  <div class="info">
+    <div class="dados">
+      <mat-card>
+        <mat-card-header>
+          <h2> Seus dados</h2>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item>
+              <span matListItemTitle>Nome</span>
+              <span matListItemLine>{{lastPurchaseInfos.name}}</span>
+            </mat-list-item>
+            <mat-list-item>
+              <span matListItemTitle>Email</span>
+              <span matListItemLine>{{lastPurchaseInfos.email}}</span>
+            </mat-list-item>
+            <mat-list-item>
+              <span matListItemTitle>Email</span>
+              <span matListItemLine>{{lastPurchaseInfos.phone}}</span>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="compra">  
+      <mat-card class="card">
+        <mat-card-header>
+          <h2>E os dados da sua compra:</h2>
+          </mat-card-header>
+          <mat-card-content >       
+            <mat-list *ngFor="let product of lastProductsResume">            
+              <mat-list-item>
+               <span matListItemTitle>{{product.title}}</span>
+               <span matListItemLine>Quantidade: {{product.quantity}}</span>
+               <span matListItemLine>Valor Unitário: {{product.price | currencyBrl}}</span>
+               <span matListItemLine>Valor total:  {{ product.price * product.quantity | currencyBrl }}</span>
+              </mat-list-item>
+              </mat-list>
+          </mat-card-content>
+
+
+      </mat-card>
+    </div>
+
+  </div>
+</section>

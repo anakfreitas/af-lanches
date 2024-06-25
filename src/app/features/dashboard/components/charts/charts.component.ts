@@ -8,8 +8,9 @@ import Chart from 'chart.js/auto';
 })
 export class ChartsComponent {
   @Input() chart!: Chart;
-  @Input() idChart: string = 'canvas';
+  @Input() idChart: string = 'review';
   @Input() title: string = '';
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }

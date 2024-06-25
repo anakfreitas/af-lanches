@@ -20,15 +20,11 @@ $af-lanches-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$af-lanches-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $af-lanches-primary,
-      accent: $af-lanches-accent,
-      warn: $af-lanches-warn,
-    ),
-  )
-);
+$af-lanches-theme: mat.define-light-theme((color: (primary: $af-lanches-primary,
+        accent: $af-lanches-accent,
+        warn: $af-lanches-warn,
+      ),
+    ));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -42,6 +38,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -62,6 +59,27 @@ h2 {
   color: $secondary;
 }
 
-h2{
+h2 {
   color: $secondary;
+}
+
+.mdc-line-ripple::after {
+  border-bottom-color: $primary !important;
+}
+
+.mdc-floating-label,
+.mat-mdc-option {
+  color: $primary !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) span {
+  color: $secondary !important;
+}
+
+.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after, .mat-primary .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after{
+  color: $secondary !important;
+}
+
+.mat-mdc-select-arrow{
+  color: $secondary !important;
 }

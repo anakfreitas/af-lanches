@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { PurchaseInfos } from '../../models/purchase.model';
-import { ProductService } from '../../../../core/services/product.service';
 import { CartService } from '../../services/cart.service';
-import { ProductsResume, Product } from '../../models/product.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { ProductsResume } from '../../models/product.model';
+import { Observable } from 'rxjs';
 import { SnackbarService } from '../../../../core/services/snackbar.service';
 import { CheckoutService } from '../../services/checkout.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ReviewsComponent } from '../../components/reviews/reviews.component';
 
 @Component({
   selector: 'app-checkout-page',
@@ -21,9 +18,7 @@ export class CheckoutPageComponent {
   constructor(
     private cartService: CartService,
     private checkoutService: CheckoutService,
-    private snackbarService: SnackbarService,
-    private dialog: MatDialog,
-    private productService: ProductService
+    private snackbarService: SnackbarService
   ) {}
 
   incrementProduct(productId: string) {
@@ -44,8 +39,6 @@ export class CheckoutPageComponent {
 
   finalizePurchase(purchaseInfos: PurchaseInfos) {
     this.checkoutService.finishSale(purchaseInfos);
-
-
   }
 
   // openReviewDialog(productId: string) {

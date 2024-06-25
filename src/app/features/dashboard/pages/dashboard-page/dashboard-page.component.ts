@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import Chart, { ChartConfiguration, registerables } from 'chart.js/auto';
-import { ReviewService } from '../../../../core/services/review.service';
+import Chart, {
+  ChartConfiguration,
+  ChartType,
+  registerables,
+} from 'chart.js/auto';
 import { ProductService } from '../../../../core/services/product.service';
 import { DashboardService } from '../../services/dashboard.service';
-import { Product } from '../../../buy/models/product.model';
-import { Review, ReviewAverage } from '../../../../core/models/reviews.model';
 interface Option {
   label: string;
   value: number;
@@ -17,152 +18,143 @@ Chart.register(...registerables);
   styleUrls: ['./dashboard-page.component.scss'],
 })
 export class DashboardPageComponent {
-  chart!: Chart;
+  chart!: Chart<ChartType, any>;
 
   options: Option[] = [
     {
       label: 'Mais vendidos',
-      value: 1,
+      value: 0,
     },
     {
-      label: 'Mais avaliados',
-      value: 2,
+      label: 'Avaliações',
+      value: 1,
     },
   ];
 
   public selectedOption!: Option;
-
-  public reviews: Review[] = [];
+  public label: string | undefined;
 
   constructor(
-    private reviewService: ReviewService,
     private productService: ProductService,
     private dashboardService: DashboardService
   ) {}
 
   ngOnInit(): void {
-    this.selectedOption = {
-      label: 'Mais vendidos',
-      value: 1,
-    };
-    this.reviewService.getReviews().subscribe((reviews) => {
-      this.reviews = reviews;
-      this.initReviewsChart();
-    });
+    this.selectedOption = this.options[0];
+    this.setSalesChart();
   }
 
   public changeOption(value: Option) {
     this.chart.destroy();
-    if (value.value === 1) {
-      this.initReviewsChart();
-    } else {
-      this.initSalessChart();
+    this.selectedOption = value;
+    switch (value.value) {
+      case 0:
+        this.setSalesChart();
+        break;
+      case 1:
+        this.setReviewsChart();
+        break;
     }
   }
 
-  private initReviewsChart() {
-    const averageRatings = this.calculateAverageRatings();
-    const labels = averageRatings.map((ar) => ar.title);
-    const data = averageRatings.map((ar) => ar.averageRating);
+  private setSalesChart() {
+    this.dashboardService.getSellingProducts().subscribe((items) => {
+      const labels = items.map(
+        (product) => this.productService.getProductById(product.id).title
+      );
+      const data = items.map((item) => item.quantity);
 
-    const chartConfig: ChartConfiguration = {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Classificação média',
-            data: data,
-            backgroundColor: 'rgba(52, 192, 235, 0.2)',
-            borderColor: 'rgba(52, 192, 235, 1)',
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
+      const chartConfig: ChartConfiguration = {
+        type: 'pie',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Quantidade',
+              data: data,
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+              ],
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+              ],
+              borderWidth: 1,
+            },
+          ],
         },
-      },
-    };
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        },
+      };
 
-    this.chart = new Chart('canvas', chartConfig);
-  }
-
-  calculateAverageRatings(): ReviewAverage[] {
-    const averages: {
-      [key: string]: { total: number; count: number; title: string };
-    } = {};
-
-    this.reviews.forEach((review) => {
-      if (!averages[review.productId]) {
-        averages[review.productId] = {
-          total: 0,
-          count: 0,
-          title: review.productName,
-        };
-      }
-      averages[review.productId].total += review.rating;
-      averages[review.productId].count++;
-      averages[review.productId].title = review.productName;
+      this.chart = new Chart('canvas', chartConfig);
     });
-
-    const averageRatings = Object.keys(averages).map((productId) => ({
-      productId,
-      averageRating: averages[productId].total / averages[productId].count,
-      title: averages[productId].title,
-    }));
-
-    return averageRatings;
   }
 
-  private initSalessChart() {
-    this.dashboardService.getTopSellingProducts().subscribe({
-      next: (items) => {
-        const data = items.map((item) => item.quantity);
-        const labels = items.map((product) => product.title);
-
-        const chartConfig: ChartConfiguration = {
-          type: 'pie',
-          data: {
-            labels: labels,
-            datasets: [
-              {
-                label: 'Quantidade',
-                data: data,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                ],
-                borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                ],
-                borderWidth: 1,
+  private setReviewsChart() {
+    this.dashboardService.getRatings().subscribe((_data) => {
+      const data = _data.map((ratings) => ({
+        ...ratings,
+        x: this.productService.getProductById(ratings.id).title,
+      }));
+      const labels = data.map((ratings) => ratings.x);
+      const chartConfig: ChartConfiguration<
+        ChartType,
+        { '1': number; '2': number; '3': number; '4': number; '5': number }[]
+      > = {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: '1 estrela',
+              data: data,
+              parsing: {
+                yAxisKey: '1',
               },
-            ],
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-          },
-        };
+            },
+            {
+              label: '2 estrelas',
+              data: data,
+              parsing: {
+                yAxisKey: '2',
+              },
+            },
+            {
+              label: '3 estrelas',
+              data: data,
+              parsing: {
+                yAxisKey: '3',
+              },
+            },
+            {
+              label: '4 estrelas',
+              data: data,
+              parsing: {
+                yAxisKey: '4',
+              },
+            },
+            {
+              label: '5 estrelas',
+              data: data,
+              parsing: {
+                yAxisKey: '5',
+              },
+            },
+          ],
+        },
+      };
 
-        this.chart = new Chart('canvas', chartConfig);
-      },
-      error: (err) => {
-        console.log(err);
-      },
+      this.chart = new Chart('canvas', chartConfig);
     });
   }
 }
