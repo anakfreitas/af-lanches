@@ -156,7 +156,7 @@
       "date": "2024-06-25T17:18:19.630Z"
     }
   ],
-  "top-items": [
+  "get-sellings-products": [
     {
       "id": "1",
       "title": "Pastel de Carne",
@@ -181,28 +181,6 @@
       "id": "5",
       "title": "Pastel de Pizza",
       "quantity": 4
-    }
-  ],
-  "get-sellings-products": [
-    {
-      "id": "1",
-      "quantity": 2
-    },
-    {
-      "id": "2",
-      "quantity": 5
-    },
-    {
-      "id": "3",
-      "quantity": 4
-    },
-    {
-      "id": "4",
-      "quantity": 7
-    },
-    {
-      "id": "5",
-      "quantity": 3
     }
   ],
   "get-ratings-products": [

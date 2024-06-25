@@ -60,6 +60,17 @@ mat-list-item {
 }
 
 @keyframes fade {
-  from {opacity: 0%;}
-  to {opacity: 100%;}
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-product-list {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
 }

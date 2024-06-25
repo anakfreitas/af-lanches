@@ -5,12 +5,13 @@
         <mat-icon class="icon" [ngClass]="{'active': layout === 'card'}"
             (click)="setLayout('card')">border_all</mat-icon>
         <mat-icon class="icon" [ngClass]="{'active': layout === 'list'}" (click)="setLayout('list')">list</mat-icon>
-    </div>
-    <div class="filter">
-        <button mat-button [matBadge]="counterFilter" [matBadgeHidden]="counterFilter === 0 ? true : false"
-            matBadgeSize="small" (click)="openProductFilter()">
-            Filtrar
-        </button>
+
+        <div class="filter">
+          <button mat-button [matBadge]="counterFilter" [matBadgeHidden]="counterFilter === 0 ? true : false"
+              matBadgeSize="small" (click)="openProductFilter()">
+              Filtrar
+          </button>
+      </div>
     </div>
     <div class="search">
         <mat-form-field  class="search small-input">
@@ -18,6 +19,4 @@
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
     </div>
-
-
 </section>
