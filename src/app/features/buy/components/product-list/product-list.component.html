@@ -1,6 +1,6 @@
 <section class="header-product-list">
   <h1>Nossos produtos</h1>
-  <app-layout-button [layout]="layout" (search)="searchProduct($event)"></app-layout-button>
+  <app-layout-button [layout]="layout" (search)="searchProduct($event)" (filter)="filterList($event)"></app-layout-button>
 </section>
 <section class="product-list">
   <h2>Pastéis</h2>
@@ -24,7 +24,11 @@
   </div>
 
   <div class="card-list" style="margin-top: 20px" *ngIf="layout === 'card'">
-    <mat-card class="card" *ngFor="let item of products" (click)="openProductDetails(item)">
+    <mat-card
+      class="card"
+      *ngFor="let item of products"
+      (click)="openProductDetails(item)"
+    >
       <mat-card-header>
         <mat-card-title-group>
           <mat-card-title>
@@ -49,7 +53,10 @@
 
   <div *ngIf="layout === 'list'" class="list">
     <mat-list>
-      <mat-list-item *ngFor="let item of products" (click)="openProductDetails(item)">
+      <mat-list-item
+        *ngFor="let item of products"
+        (click)="openProductDetails(item)"
+      >
         <img
           matListItemIcon
           src="https://soubh.uai.com.br/uploads/place/image/882/Paulo_Vilela.jpg"

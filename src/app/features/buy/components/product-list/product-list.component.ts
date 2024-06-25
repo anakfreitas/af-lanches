@@ -1,4 +1,4 @@
-import { Component, HostListener, Injectable, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, Injectable, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { Product, ToBuyProduct } from '../../models/product.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CartService } from '../../services/cart.service';
@@ -34,10 +34,12 @@ export class MyCustomPaginatorIntl implements MatPaginatorIntl {
   styleUrls: ['./product-list.component.scss'],
   providers: [{ provide: MatPaginatorIntl, useClass: MyCustomPaginatorIntl }],
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnChanges {
   @HostListener('search', ['$event'])
   @Input() allProducts: any;
   @Input() layout: any;
+
+  @Output() filter: EventEmitter<string> = new EventEmitter();
   public isMobile: boolean = false;
   public products: any;
   public message: boolean = false;
@@ -53,6 +55,10 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.products = this.allProducts
+  }
+
+  ngOnChanges(): void{
     this.products = this.allProducts
   }
 
@@ -86,6 +92,9 @@ export class ProductListComponent implements OnInit {
     this.dialog.open(ProductDetailModalComponent, dialogConfig);
   }
 
+  filterList(value: string) {
+    this.filter.emit(value);
+  }
 
   searchProduct(search: string) {
       if (search !== '') {

@@ -13,13 +13,15 @@ export class LayoutButtonComponent {
   @Input() layout: any;
   public searchQuery: string = '';
 
+  @Output() filter: EventEmitter<string> = new EventEmitter();
+
   public selectedValue: string | undefined;
   public counterFilter: number = 0;
 
   constructor(
     private localStorageService: LocalStorageService,
-    private dialog: MatDialog,
-  ) { }
+    private dialog: MatDialog
+  ) {}
 
   setLayout(type: string) {
     this.localStorageService.setItem('layoutList', type);
@@ -29,7 +31,16 @@ export class LayoutButtonComponent {
     dialogConfig.width = '300px';
     dialogConfig.maxWidth = '90vw';
     dialogConfig.autoFocus = true;
-    this.dialog.open(FilterProductModalComponent, dialogConfig);
+    const dialogRef = this.dialog.open(
+      FilterProductModalComponent,
+      dialogConfig
+    );
+
+    dialogRef.afterClosed().subscribe((value) => {
+      if (value) {
+        this.filter.emit(value);
+      }
+    });
   }
 
   searchProduct(){

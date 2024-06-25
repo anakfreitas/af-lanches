@@ -1,8 +1,3 @@
-export interface SeelingsProducts {
-  id: string;
-  quantity: number;
-}
-
 export interface RaatingProducts {
   id: string;
   '1': number;
@@ -10,4 +5,10 @@ export interface RaatingProducts {
   '3': number;
   '4': number;
   '5': number;
+}
+
+export interface TopSales {
+  id: string;
+  title: string;
+  quantity: number;
 }
