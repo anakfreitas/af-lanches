@@ -56,8 +56,6 @@ export class BuyPageComponent implements OnInit {
   }
 
   filterList(value: string) {
-    console.log(value);
-
     switch (value) {
       case 'lowest-price': {
         this.list = this.productService.filterByLowestPrice(this.list);
