@@ -1,30 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Review, ReviewAverage } from '../../core/models/reviews.model';
+import { Review } from '../../../core/models/reviews.model';
 import { v4 as uuidv4 } from 'uuid';
-import { HttpClient } from '@angular/common/http';
-import { apiUrl } from '../../../env/dev.env';
 import { Observable, map } from 'rxjs';
+import { RequestService } from '../../../core/services/request.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReviewService {
-  private localStorageKey = 'reviews';
-  private apiUrl = '';
-
-  constructor(private http: HttpClient) {
-    this.apiUrl = apiUrl;
-  }
+  constructor(private requestService: RequestService) {}
 
   getReviews(): Observable<Review[]> {
-    return this.http.get<Review[]>(`${this.apiUrl}/reviews`);
+    return this.requestService.get<Review[]>(`reviews`);
   }
 
   /**
    * Obtém as avalições de um produto
    */
   getReviewsByProduct(productId: string): Observable<Review[]> {
-    return this.http.get<Review[]>(`${this.apiUrl}/reviews`).pipe(
+    return this.requestService.get<Review[]>(`reviews`).pipe(
       map((reviews) => {
         const findReviews = reviews.filter(
           (review) => review.productId === productId
@@ -35,7 +29,7 @@ export class ReviewService {
   }
 
   saveReview(review: Review): Observable<Review> {
-    return this.http.post<Review>(`${this.apiUrl}/reviews`, {
+    return this.requestService.post<Review>(`reviews`, {
       ...review,
       reviewId: uuidv4(),
       date: new Date(),

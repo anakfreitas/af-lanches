@@ -1,22 +1,18 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { apiUrl } from '../../../../env/dev.env';
-import { Observable } from 'rxjs';
+import { RequestService } from '../../../core/services/request.service';
+import { RaatingProducts, SeelingsProducts } from '../models/dashboard.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DashboardService {
-  private apiUrl: string = '';
-  constructor(private http: HttpClient) {
-    this.apiUrl = apiUrl;
+  constructor(private requestService: RequestService) {}
+
+  public getSellingProducts() {
+    return this.requestService.get<SeelingsProducts[]>('get-sellings-products');
   }
 
-  public getTopSellingProducts(): Observable<
-    { id: string; title: string; quantity: number }[]
-  > {
-    return this.http.get<{ id: string; title: string; quantity: number }[]>(
-      `${this.apiUrl}/top-items`
-    );
+  public getRatings() {
+    return this.requestService.get<RaatingProducts[]>('get-ratings-products');
   }
 }

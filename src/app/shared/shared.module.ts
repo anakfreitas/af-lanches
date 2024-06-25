@@ -17,7 +17,8 @@ import { NgxMaskModule } from 'ngx-mask';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [CurrencyBrlPipe, AfInputComponent],
@@ -53,6 +54,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatDialogModule,
     MatDividerModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
 
     // Form imports
     ReactiveFormsModule,

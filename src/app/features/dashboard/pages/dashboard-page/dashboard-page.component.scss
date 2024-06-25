@@ -1,13 +1,12 @@
 @import "/src/app/core/variables.scss";
 
-section{
-  padding:0% 10%;
+section {
+  padding: 0% 10%;
   padding-bottom: 5%;
   h1 {
     text-align: center;
     color: $primary;
   }
-
 }
 
 .main {
@@ -18,8 +17,6 @@ section{
   width: 100%;
   gap: 24px;
 
- 
-
   .select-option {
     width: 250px;
     margin-bottom: 20px;
@@ -28,7 +25,8 @@ section{
   .chart {
     width: 100%;
   }
-  .mais-vendidos, .mais-avaliados{
+  .mais-vendidos,
+  .mais-avaliados {
     width: 100%;
   }
 }

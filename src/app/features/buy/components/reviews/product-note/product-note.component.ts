@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ReviewService } from '../../../../../core/services/review.service';
+import { ReviewService } from '../../../services/review.service';
 import { Review } from '../../../../../core/models/reviews.model';
 
 @Component({

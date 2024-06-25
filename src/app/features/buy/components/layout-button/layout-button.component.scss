@@ -1,45 +1,44 @@
 @import "/src/app/core/variables.scss";
 
-.layout-button{
+.layout-button {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .button-row {
-    display: flex;
-    width: 100%;
-    justify-content: end;
-    gap: 5px;
-  }
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  gap: 5px;
+}
 
-.icon{
-    text-align: center;
-    background-color: $bg-primary;
-    font-size: 15px;
-    width: 20px;
-    height: 15px;
-    padding: 2px;
-    border-radius: 5px;
-    color: $neutral-light;
-   &:hover{
+.icon {
+  text-align: center;
+  background-color: $bg-primary;
+  font-size: 15px;
+  width: 20px;
+  height: 15px;
+  padding: 2px;
+  border-radius: 5px;
+  color: $neutral-light;
+  &:hover {
     background-color: $bg-secondary;
     cursor: pointer;
-   } 
-}  
+  }
+}
 
-.active{
+.active {
   background-color: $bg-secondary;
 }
 
-
-.filter{
+.filter {
   background-color: $bg-secondary;
   border-radius: 5px;
-  button{
+  button {
     font-size: 12px;
     height: 20px;
-    color: $primary ;
+    color: $primary;
   }
   ::ng-deep .mat-badge-content {
     background-color: $bg-primary;

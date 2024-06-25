@@ -25,14 +25,9 @@ export class BuyPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.productService.getAllProducts().subscribe({
-      next: (res) => {
-        this.list = res;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    this.productService.allProducts.subscribe(
+      (allProducts) => (this.list = allProducts)
+    );
 
     this.layoutList = this.localStorageService.getItem('layoutList');
 
