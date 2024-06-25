@@ -145,6 +145,15 @@
       "rating": 4,
       "reviewId": "6bbb51b5-3750-4099-b187-23b81ce87dae",
       "date": "2024-06-25T15:29:20.429Z"
+    },
+    {
+      "id": "9117",
+      "productId": "4",
+      "productName": "Pastel de Misto",
+      "name": "User Teste",
+      "rating": 5,
+      "reviewId": "fbcfaee6-70ba-427e-a055-d46158578e77",
+      "date": "2024-06-25T17:18:19.630Z"
     }
   ],
   "top-items": [
@@ -175,11 +184,26 @@
     }
   ],
   "get-sellings-products": [
-    { "id": "1", "quantity": 2 },
-    { "id": "2", "quantity": 5 },
-    { "id": "3", "quantity": 4 },
-    { "id": "4", "quantity": 7 },
-    { "id": "5", "quantity": 3 }
+    {
+      "id": "1",
+      "quantity": 2
+    },
+    {
+      "id": "2",
+      "quantity": 5
+    },
+    {
+      "id": "3",
+      "quantity": 4
+    },
+    {
+      "id": "4",
+      "quantity": 7
+    },
+    {
+      "id": "5",
+      "quantity": 3
+    }
   ],
   "get-ratings-products": [
     {
